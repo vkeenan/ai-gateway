@@ -14,6 +14,7 @@
     <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
     <label>Prompt Engineering</label>
     <navType>Standard</navType>
+    <tabs>Prompt_Engineering</tabs>
     <tabs>Prompt__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Prompt_Engineering_UtilityBar</utilityBar>

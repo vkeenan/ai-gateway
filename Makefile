@@ -5,3 +5,9 @@ build:
 
 open:
 	./scripts/open.sh
+
+push:
+	./scripts/push.sh
+
+pull:
+	./scripts/pull.sh

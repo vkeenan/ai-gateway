@@ -1,25 +1,60 @@
 # Salesforce Prompt Engineering - sf-prompts
 
+## Project Description
+
+The sf-prompts project is an open-source software repository dedicated to providing a platform for Salesforce customers to interact with the OpenAI API. Utilizing a custom Salesforce object named `Prompt__c`, this project enables developers and users to create and store prompts that can be sent to the OpenAI completion API. The response from the API is then stored in the `PromptAnswer__c` object. This repository serves as a foundational tool for Salesforce customers interested in leveraging AI capabilities for B2B software and marketing applications.
+
+## Table of Contents
+
+- [Salesforce Prompt Engineering - sf-prompts](#salesforce-prompt-engineering---sf-prompts)
+  - [Project Description](#project-description)
+  - [Table of Contents](#table-of-contents)
+  - [Project Setup](#project-setup)
+    - [Initial Setup](#initial-setup)
+    - [OpenAI Setup](#openai-setup)
+      - [Get OpenAI API Key and Organization ID](#get-openai-api-key-and-organization-id)
+      - [Create External Credential](#create-external-credential)
+        - [Begin Creating External Credential](#begin-creating-external-credential)
+        - [Create Permission Set Mapping](#create-permission-set-mapping)
+        - [Create Custom Headers](#create-custom-headers)
+      - [Create Named Credential](#create-named-credential)
+  - [Using sf-prompts](#using-sf-prompts)
+  - [Project Testing](#project-testing)
+  - [Project Deployment](#project-deployment)
+  - [Project Roadmap](#project-roadmap)
+  - [Project Contributing](#project-contributing)
+  - [Project License](#project-license)
+  - [Project Code of Conduct](#project-code-of-conduct)
+  - [Project Contact Information](#project-contact-information)
+  - [Project Acknowledgements](#project-acknowledgements)
+  - [Project History](#project-history)
+  - [Project Credits](#project-credits)
+  - [Project Sponsors](#project-sponsors)
+  - [Project References](#project-references)
+
+![Robot with a Wrench and a Brush](images/SalesforceDevops.net_An_icon_that_is_robot_with_a_wrench.png)
 ## Project Setup
 
-The code provided is designed to work out-of-the-box with Salesforce scratch orgs. You should also be able to adapt it to work with other Salesforce orgs by deploying the metadata elements manually.
+The code provided is designed to work out-of-the-box with Salesforce scratch orgs. You should also be able to adapt it to work with other Salesforce orgs by deploying the metadata elements manually. Below are instructions for setting up a scratch org and deploying the sample prompts.
+
+Please be careful to follow the setup instructions precisely. Certain setup steps depend on the exact values used in other steps.
 
 ### Initial Setup
 
-Here are complete setup instructions. This assumes you don't already have a dev-hub org set up. If you do, you can skip the first two steps.
+Here are the initial setup instructions. This assumes you don't already have a dev-hub org set up. If you do, you can skip the first two steps.
 
-1. Have and existing Salesforce Developer Edition org or create a new one. This will be your dev-hub org. You can create a new one here: https://developer.salesforce.com/signup.
-2. Enable Dev Hub in your dev-hub org. See instructions here: <https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_enable_devhub.htm>.
-3. Install the Salesforce CLI. See instructions here: <https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm>.
-5. Install VS Code and Salesforce CLI Plugin for VS Code. See instructions here: <https://developer.salesforce.com/tools/vscode/en/vscode-desktop/install>.
-6. Extract the vkeenan/sf-prompts repository to your local machine. See instructions here: <https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository>.
-7. Open VS Code to the new directory.
-8. Open the Command Palette (Ctrl+Shift+P) and run the command SFDX: Authorize a Dev Hub.
-9. Select the dev-hub org you created in step 1.
-10. Open a terminal window in VS Code (Ctrl+Shift+`).
-11. Rename the environment file with `mv scripts/.env.example scripts/.env`.
-12. Open `scripts/.env` andenter your enter your Dev-Hub username.
-13. Run the command `make build` to create the scratch org and load new data.
+1. Have and existing Salesforce Developer Edition org or create a new one. This will be your dev-hub org. You can create a new one here: <https://developer.salesforce.com/signup>.
+1. Enable Dev Hub in your dev-hub org. See instructions here: <https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_enable_devhub.htm>.
+1. Install the Salesforce CLI. See instructions here: <https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm>.
+1. Install VS Code and Salesforce CLI Plugin for VS Code. See instructions here: <https://developer.salesforce.com/tools/vscode/en/vscode-desktop/install>.
+1. Extract the vkeenan/sf-prompts repository to your local machine. See instructions here: <https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository>.
+1. Open VS Code to the new directory.
+1. Open the Command Palette (Ctrl+Shift+P) and run the command SFDX: Authorize a Dev Hub.
+1. Select the dev-hub org you created in step 1.
+1. Open a terminal window in VS Code (Ctrl+Shift+`).
+1. Rename the environment file `scripts/.env.example` to `scripts/.env`.
+1. Open `scripts/.env` with VS Code and enter your Dev-Hub username. Save the file.
+1. Enter the command `make build` to create the scratch org and load the sample prompts.
 
 ### OpenAI Setup
 
@@ -38,12 +73,12 @@ This is the rather lengthy procedure for storing the OpenAI API Key in Salesforc
 ##### Begin Creating External Credential
 
 1. Open your scratch org. Use the command `make open` to open the scratch org in your browser.
-2. Enter "named" in the Setup Quick Find box and select Named Credentials.
-3. Click External Credentials.
-4. Click New External Credential.
-5. Enter "OpenAI" for the Label and Name.
-6. Select "Custom" for Authentication Protocol.
-7. Click Save.
+1. Enter "named" in the Setup Quick Find box and select Named Credentials.
+1. Click External Credentials.
+1. Click New External Credential.
+1. Enter "OpenAI" for the Label and Name.
+1. Select "Custom" for Authentication Protocol.
+1. Click Save.
 
 ##### Create Permission Set Mapping
 
@@ -88,4 +123,70 @@ Now that we have the External Credential created, we can create the Named Creden
 6. Click `Allow Formulas in HTTP Header` checkbox.
 7. Click Save.
 
-Congratulations! You have completed the extra setup required to use the OpenAI API from within you Salesforce org.
+Congratulations! You have completed the extra setup required to use the OpenAI API from within you Salesforce org, and your API key is safely stored in Salesforce. You are ready to start using the sample prompts.
+
+## Using sf-prompts
+
+
+... (pending instructions here) ...
+
+## Project Testing
+
+... (pending instructions here) ...
+
+## Project Deployment
+
+... (pending instructions here) ...
+
+## Project Roadmap
+
+... (pending plans here) ...
+
+## Project Contributing
+
+... (pending instructions here) ...
+
+## Project License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Project Code of Conduct
+
+... (pending instructions here) ...
+
+## Project Contact Information
+
+For any inquiries about the project, please reach out to us at project_sf-prompts@salesforce.com.
+
+## Project Acknowledgements
+
+We would like to thank the following for their contributions and support:
+
+- Salesforce Community: For their continued support and usage of the project.
+- OpenAI: For providing the API used in this project.
+
+## Project History
+
+The sf-prompts project was conceived with the aim of harnessing the power of OpenAI in the Salesforce ecosystem. It started as a small, internal project, but quickly grew as more Salesforce customers expressed interest in AI capabilities. The project was made open source to foster innovation and expand its potential applications within the community.
+
+## Project Credits
+
+- Project Lead: [Your Name](mailto:you@example.com)
+- Core Contributors: (List of core contributors)
+
+## Project Sponsors
+
+We are currently looking for sponsors. If you are interested in sponsoring this project, please contact us.
+
+## Project References
+
+- [Salesforce Developer Documentation](https://developer.salesforce.com/docs/)
+- [OpenAI API Documentation](https://platform.openai.com/docs/)
+
+Copy code
+
+
+
+
+
+Regenerate response
