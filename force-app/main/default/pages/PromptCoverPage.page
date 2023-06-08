@@ -3,16 +3,18 @@
 
   <apex:pageBlock title="Welcome to the Prompt Engineering App">
     <apex:outputText>
-      <h2 style="font-size:3em">Welcome!</h2>
+      <h2 style="font-size:3em; margin-bottom: 1em;">Welcome!</h2>
       <p>
-        <img src="https://salesforcedevops.net/wp-content/uploads/2023/06/SalesforceDevops.net_An_icon_that_is_robot_with_a_wrench_in_one_cd929c3e-0e77-46d6-817b-f53f34b73c99.jpg"
+        <img style="margin-bottom: 1em;" src="https://salesforcedevops.net/wp-content/uploads/2023/06/SalesforceDevops.net_An_icon_that_is_robot_with_a_wrench_in_one_cd929c3e-0e77-46d6-817b-f53f34b73c99.jpg"
           alt="Welcome image" height="256" width="265" />
       </p>
-      <p style="font-size:2em">We are glad you are here. The Prompt Engineering App enables you to interact with the OpenAI API, create and store
+      <p style="font-size:1.75em;margin-bottom: 1em;">We are glad you are here. The Prompt Engineering App enables you to interact with the OpenAI API, create and store
         prompts, and receive AI-generated responses. Explore the statistics below to see the current system usage. Happy
         coding!
       </p>
-      <p style="font-size:2em">More Information:
+      <h2 style="font-size:2em;margin-bottom: 1em;">Getting Started</h2>
+      <p style="font-size:1.75em;margin-bottom: 1em;">Getting started text goes here.</p>
+      <p style="font-size:1.75em;margin-bottom: 1em;">More Information:
         <a href="https://salesforcedevops.net/prompt-engineering-app">https://salesforcedevops.net/prompt-engineering-app</a>
       </p>
     </apex:outputText>

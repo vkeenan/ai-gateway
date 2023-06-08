@@ -13,11 +13,6 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>code-davinci-edit-001</fullName>
-                <default>false</default>
-                <label>code-davinci-edit-001</label>
-            </value>
-            <value>
                 <fullName>gpt-3.5-turbo</fullName>
                 <default>false</default>
                 <label>gpt-3.5-turbo</label>
@@ -26,11 +21,6 @@
                 <fullName>gpt-4</fullName>
                 <default>false</default>
                 <label>gpt-4</label>
-            </value>
-            <value>
-                <fullName>text-davinci-003</fullName>
-                <default>false</default>
-                <label>text-davinci-003</label>
             </value>
         </valueSetDefinition>
     </valueSet>

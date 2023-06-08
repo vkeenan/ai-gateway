@@ -38,10 +38,6 @@
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ParentPrompt__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>UsedCount__c</field>
             </layoutItems>
@@ -102,15 +98,6 @@
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>Order__c</fields>
-        <fields>Title__c</fields>
-        <fields>Prompt__c</fields>
-        <relatedList>Prompt__c.ParentPrompt__c</relatedList>
-        <sortField>Order__c</sortField>
-        <sortOrder>Desc</sortOrder>
-    </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
         <relatedList>PromptAnswer__c.Prompt__c</relatedList>

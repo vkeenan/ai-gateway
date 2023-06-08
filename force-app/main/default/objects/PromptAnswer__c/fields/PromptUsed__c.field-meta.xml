@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PromptUsed__c</fullName>
+    <description>The text of the Prompt message used to generate the Answer text</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The text of the Prompt message used to generate the Answer text</inlineHelpText>
+    <label>Prompt Used</label>
+    <length>8196</length>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

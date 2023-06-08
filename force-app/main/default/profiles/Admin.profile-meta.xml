@@ -25,9 +25,24 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>PromptAnswer__c.PromptUsed__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>PromptAnswer__c.Prompt__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PromptAnswer__c.SystemUsed__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PromptAnswer__c.TokensUsed__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -52,11 +67,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Prompt__c.Parameters__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Prompt__c.ParentPrompt__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
