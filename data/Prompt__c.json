@@ -1,0 +1,102 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Prompt__c",
+                "referenceId": "Prompt__cRef1"
+            },
+            "Name": "Trigger Handler Class",
+            "Model__c": "code-davinci-edit-001",
+            "Order__c": 2,
+            "Parameters__c": "{\"NewClassName.cls\" : \"NewClassName.cls\"}",
+            "UsedCount__c": null,
+            "Tags__c": "Trigger Handler",
+            "Prompt__c": "## Task 2: Generate Trigger Handler Class\r\n\r\nGenerate a new Apex Trigger Handler class called `{NewClassName.cls}` that follows the follwing pattern:\r\n\r\n```apex\r\npublic with sharing class CourseTriggerHandler {\r\n\tpublic static void afterInsert (Map<Id, Course__c> newMap) {\r\n\t\tdoUUID(newMap.keySet());\r\n\t}\r\n\r\n\tpublic static void afterUpdate (Map<Id, Course__c> newMap, Map<Id, Course__c> oldMap) {\r\n\t\tdoUUID(newMap.keySet());\r\n\t}\r\n\r\n\tprivate static void doUUID(Set<Id> recordIds) {\r\n\t\tBoolean updateFlag = false;\r\n\t\tList<Course__c> theSobjects = [\r\n\t\t\tSELECT\r\n\t\t\tId,\r\n\t\t\tUUID__c\r\n\t\t\tFROM Course__c\r\n\t\t\tWHERE Id IN : recordIds\r\n\t\t\tWITH SECURITY_ENFORCED\r\n\t\t];\r\n\r\n\t\tfor (Course__c theSobject : theSobjects) {\r\n\t\t\tif (theSobject.UUID__c == null) {\r\n\t\t\t\tupdateFlag = true;\r\n\t\t\t\ttheSobject.UUID__c = Utility.newUuid();\r\n\t\t\t}\r\n\t\t}\r\n\r\n\t\tif (updateFlag) {\r\n\t\t\tUpdate theSobjects\r\n\t\t\t;\r\n\t\t}\r\n\t}\r\n\r\n}\r\n```",
+            "System__c": null
+        },
+        {
+            "attributes": {
+                "type": "Prompt__c",
+                "referenceId": "Prompt__cRef2"
+            },
+            "Name": "Service Wrapper Class",
+            "Model__c": null,
+            "Order__c": 1,
+            "Parameters__c": "{\"NewClassName.cls\" : \"NewClassName.cls\"}",
+            "UsedCount__c": null,
+            "Tags__c": "Service Class Wrapper",
+            "Prompt__c": "## Task 1: Generate a Service Wrapper Class\r\n\r\nGenerate a new Apex Service Wrapper class called `{NewClassName.cls}` that contains the following custom fields:\r\n\r\n```xml\r\n{NewClassNameFields}\r\n```\r\n\r\nGenerate {NewClassName} using the `Course` class definition as a template. \r\n\r\n```apex\r\npublic inherited sharing class Course {\r\n\tpublic String ID;\r\n\tpublic String CreatedById;\r\n\tpublic DateTime CreatedDate;\r\n\tpublic String Description;\r\n\tpublic String FullDescription;\r\n\tpublic String ImageAltText;\r\n\tpublic String ImageUrl;\r\n\tpublic String InstructorId;\r\n\tpublic String LastModifedById;\r\n\tpublic DateTime LastModifiedDate;\r\n\tpublic String Logo;\r\n\tpublic Decimal Price;\r\n\tpublic String Slug;\r\n\tpublic String TemplateId;\r\n\tpublic String Title;\r\n\r\n\tpublic Course(Course__c theSobject) {\r\n\t\tunMarshalDB(theSobject);\r\n\t}\r\n\r\n\tpublic Course(String recordId) {\r\n\t\tif (recordId != null) {\r\n\t\t\tString whereClause = (recordId.length() == 36) ? 'UUID__c = :recordId' : 'Id = :recordId';\r\n\t\t\tString queryString = 'SELECT Id, CreatedBy.UUID__c, CreatedDate, LastModifiedBy.UUID__c, LastModifiedDate, UUID__c, Description__c, FullDescription__c, ImageAltText__c, ImageURL__c, Logo__c, Instructor__r.UUID__c, Price__c, Slug__c, Template__r.UUID__c, Title__c FROM Course__c WHERE ' + whereClause + ' WITH SECURITY_ENFORCED LIMIT 1';\r\n\t\t\tList<Course__c> sObjList = new List<Course__c>();\r\n\r\n\t\t\ttry {\r\n\t\t\t\tsObjList = System.Database.query(queryString);\r\n\t\t\t} catch (DmlException e) {\r\n\t\t\t\tSystem.debug('An unexpected error has occurred: ' + Utility.errormsg(e));\r\n\t\t\t}\r\n\r\n\t\t\tif (sObjList.size() == 0) {\r\n\t\t\t\tSystem.debug('Course.constructor: unknown Course__c ID: ' + recordId);\r\n\t\t\t} else {\r\n\t\t\t\tunMarshalDB(sObjList[0]);\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\r\n\tprivate void unMarshalDB(Course__c theSobject) {\r\n\t\tID = theSobject.UUID__c;\r\n\t\tCreatedById = theSobject.CreatedBy.UUID__c;\r\n\t\tCreatedDate = theSobject.CreatedDate;\r\n\t\tDescription = theSobject.Description__c;\r\n\t\tFullDescription = theSobject.FullDescription__c;\r\n\t\tImageURL = theSobject.ImageURL__c;\r\n\t\tImageAltText = theSobject.ImageAltText__c;\r\n\t\tInstructorId = theSobject.Instructor__r.UUID__c;\r\n\t\tLastModifedById = theSobject.LastModifiedBy.UUID__c;\r\n\t\tLastModifiedDate = theSobject.LastModifiedDate;\r\n\t\tLogo = theSobject.Logo__c;\r\n\t\tPrice = theSobject.Price__c;\r\n\t\tSlug = theSobject.Slug__c;\r\n\t\tTemplateId = theSobject.Template__r.UUID__c;\r\n\t\tTitle = theSobject.Title__c;\r\n\t}\r\n\r\n}\r\n```",
+            "System__c": null
+        },
+        {
+            "attributes": {
+                "type": "Prompt__c",
+                "referenceId": "Prompt__cRef3"
+            },
+            "Name": "Handler Class",
+            "Model__c": null,
+            "Order__c": 6,
+            "Parameters__c": "{\"NewClassName.cls\" : \"NewClassName.cls\"}",
+            "UsedCount__c": null,
+            "Tags__c": "Handler Class",
+            "Prompt__c": "## Task 6: Generate a Handler Class\r\n\r\nGenerate a new Apex Handler class called `{NewClassName.cls}` according to the following pattern:\r\n\r\n```apex\r\n@RestResource(urlMapping = '/courses')\r\nglobal with sharing class HttpCourse {\r\n\t@HttpGet\r\n\tglobal static void getCourses() {\r\n\t\tContext.isRest = true;\r\n\t\tDatetime queryStart = Datetime.now();\r\n\t\tCourseResponse response = new CourseResponse();\r\n\t\tInteger theOffset = HttpHelper.getOffset();\r\n\t\tInteger theLimit = HttpHelper.getLimit();\r\n\t\tString courseId = RestContext.request.params.get('courseId');\r\n\t\tString altId = RestContext.request.params.get('id');\r\n\r\n\t\tif (altId != null) {\r\n\t\t\tcourseId = altId;\r\n\t\t}\r\n\r\n\t\tif (courseId != null) {\r\n\t\t\tresponse.data = CourseServices.getById(courseId);\r\n\t\t} else {\r\n\t\t\tresponse.data = CourseServices.getAllCourses(theLimit, theOffset);\r\n\t\t}\r\n\r\n// construct response metadata\r\n\t\tresponse.meta.pagination.plimit = theLimit;\r\n\t\tresponse.meta.pagination.poffset = theOffset;\r\n\t\tresponse.meta.pagination.pagesize = response.data.size();\r\n\t\tresponse.meta.pagination.setsize = situs.setsize;\r\n\t\tDatetime queryEnd = Datetime.now();\r\n\t\tLong theTime = (queryEnd.getTime() - queryStart.getTime());\r\n\t\tresponse.meta.serverresponsetime = String.valueOf(theTime) + ' miliseconds';\r\n\r\n\t\tRestResponse res = RestContext.response;\r\n\t\ttry {\r\n\t\t\tres.responseBody = Blob.valueOf(JSON.serialize(response));\r\n\t\t\tres.addHeader('Content-Type', 'application/json');\r\n\t\t\tres.statusCode = 200;\r\n\t\t} catch (Exception e) {\r\n\t\t\tres.responseBody = Blob.valueOf(Utility.errormsg(e));\r\n\t\t\tres.statusCode = 500;\r\n\t\t}\r\n\t}\r\n\r\n}\r\n```",
+            "System__c": null
+        },
+        {
+            "attributes": {
+                "type": "Prompt__c",
+                "referenceId": "Prompt__cRef4"
+            },
+            "Name": "Service Class",
+            "Model__c": null,
+            "Order__c": 4,
+            "Parameters__c": "{\"CustomObject__c\":\"YourCustomObject\",\"NewClassName\":\"YourClassNameServices\"}",
+            "UsedCount__c": null,
+            "Tags__c": "Service Functions",
+            "Prompt__c": "```apex\r\npublic with sharing class CourseServices {\r\n\tpublic static List<Course> getById(String recordId) {\r\n\t\tSitus.setsize = 1;\r\n\t\treturn new List<Course> {\r\n\t\t\t       new Course(recordId)\r\n\t\t};\r\n\t}\r\n\r\n\tpublic static List<Course> getAllCourses(Integer theLimit, Integer theOffset) {\r\n\t\tSitus.setsize = System.Database.countQuery('SELECT count() FROM Course__c');\r\n\t\tList<Course__c> sObjects;\r\n\t\tList<Course> courses = new List<Course>();\r\n\t\ttry {\r\n\t\t\tsObjects = [\r\n\t\t\t\tSELECT Id, UUID__c, CreatedBy.UUID__c, CreatedDate, LastModifiedBy.UUID__c, LastModifiedDate,\r\n\t\t\t\tDescription__c, FullDescription__c, ImageAltText__c, ImageURL__c, Logo__c,\r\n\t\t\t\tInstructor__r.UUID__c, Price__c, Slug__c, Template__r.UUID__c, Title__c\r\n\t\t\t\tFROM Course__c\r\n\t\t\t\tWITH SECURITY_ENFORCED\r\n\t\t\t\tORDER BY Id\r\n\t\t\t\tLIMIT :theLimit\r\n\t\t\t\tOFFSET :theOffset\r\n\t\t\t];\r\n\t\t} catch (DmlException e) {\r\n\t\t\tSystem.debug(LoggingLevel.ERROR, 'An unexpected error has occurred: ' + Utility.errormsg(e));\r\n\t\t}\r\n\r\n\t\tfor (Course__c theSobject : sObjects) {\r\n\t\t\tcourses.add(new Course(theSobject));\r\n\t\t}\r\n\r\n\t\treturn courses;\r\n\t}\r\n\r\n}\r\n```",
+            "System__c": "Here are custom fields for the `{CustomObject__c}` object. \r\n\r\n```xml\r\n{CustomObjectXMLFields}\r\n```\r\n\r\nGenerate a new Apex Service class called `{NewClassName}` according to the following pattern:"
+        },
+        {
+            "attributes": {
+                "type": "Prompt__c",
+                "referenceId": "Prompt__cRef5"
+            },
+            "Name": "Response Class",
+            "Model__c": null,
+            "Order__c": 5,
+            "Parameters__c": "{\"NewClassName.cls\" : \"NewClassNameResponse.cls\"}",
+            "UsedCount__c": null,
+            "Tags__c": "Response Class",
+            "Prompt__c": "## Task 5: Generate a Response Class\r\n\r\nGenerate a new Apex Response class called `{NewClassName.cls}` according to the following pattern:\r\n\r\n```apex\r\npublic with sharing class CourseResponse {\r\n\tpublic ResponseMeta meta;\r\n\tpublic List<Course> data;\r\n\tpublic CourseResponse() {\r\n\t\tmeta = new ResponseMeta();\r\n\t\tdata = new List<Course>();\r\n\t}\r\n\r\n}\r\n```",
+            "System__c": null
+        },
+        {
+            "attributes": {
+                "type": "Prompt__c",
+                "referenceId": "Prompt__cRef6"
+            },
+            "Name": "Trigger",
+            "Model__c": "gpt-4",
+            "Order__c": 3,
+            "Parameters__c": "{\"NewClassName.trigger\" : \"NewClassName.trigger\"}",
+            "UsedCount__c": null,
+            "Tags__c": "Trigger",
+            "Prompt__c": "## Task 3: Generate a Trigger\r\n\r\nGenerate a new Apex Trigger called `{NewClassName.trigger}` according to the following pattern:\r\n\r\n```apex\r\ntrigger CourseTrigger on Course__c (after insert) {\r\n\tif (Trigger.isAfter && Trigger.isInsert) {\r\n\t\tCourseTriggerHandler.afterInsert(trigger.NewMap);\r\n\t}\r\n}\r\n```",
+            "System__c": null
+        },
+        {
+            "attributes": {
+                "type": "Prompt__c",
+                "referenceId": "Prompt__cRef7"
+            },
+            "Name": "Apex REST API",
+            "Model__c": null,
+            "Order__c": 0,
+            "Parameters__c": null,
+            "UsedCount__c": null,
+            "Tags__c": "Apex\r\nREST API",
+            "Prompt__c": "# Apex Generation\r\n\r\nSystem: Your are an AI pair programmer expert in Salesforce languages, Salesforce architecture, and formal Salesforce architecture nomenclature. You are tasked with generating Apex code according to a pattern you will be show for each task.",
+            "System__c": null
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>System__c</fullName>
+    <description>The System prompt for Chat Completions or the Instructions prompt for the Edit endpoint</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The System prompt for Chat Completions or the Instructions prompt for the Edit endpoint</inlineHelpText>
+    <label>System</label>
+    <length>32768</length>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>10</visibleLines>
+</CustomField>

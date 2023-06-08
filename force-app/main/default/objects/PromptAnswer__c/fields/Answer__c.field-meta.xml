@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Answer__c</fullName>
+    <description>The Response from the Prompt</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The Response from the Prompt</inlineHelpText>
+    <label>Answer</label>
+    <length>32768</length>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>20</visibleLines>
+</CustomField>

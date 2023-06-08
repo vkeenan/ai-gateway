@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Model__c</fullName>
+    <description>The recommended AI Model for this Prompt</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The recommended AI Model for this Prompt</inlineHelpText>
+    <label>Model</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>code-davinci-edit-001</fullName>
+                <default>false</default>
+                <label>code-davinci-edit-001</label>
+            </value>
+            <value>
+                <fullName>gpt-3.5-turbo</fullName>
+                <default>false</default>
+                <label>gpt-3.5-turbo</label>
+            </value>
+            <value>
+                <fullName>gpt-4</fullName>
+                <default>false</default>
+                <label>gpt-4</label>
+            </value>
+            <value>
+                <fullName>text-davinci-003</fullName>
+                <default>false</default>
+                <label>text-davinci-003</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

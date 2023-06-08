@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ParameterValues__c</fullName>
+    <description>JSON body of Parameter Values that generated this Response</description>
+    <externalId>false</externalId>
+    <inlineHelpText>JSON body of Parameter Values that generated this Response</inlineHelpText>
+    <label>Parameter Values</label>
+    <length>2048</length>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>10</visibleLines>
+</CustomField>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prompt__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The Prompt from which this Response was generated</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The Prompt from which this Response was generated</inlineHelpText>
+    <label>Prompt</label>
+    <referenceTo>Prompt__c</referenceTo>
+    <relationshipName>PromptResponses</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

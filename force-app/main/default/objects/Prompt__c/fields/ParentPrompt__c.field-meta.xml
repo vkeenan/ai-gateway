@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ParentPrompt__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The Prompt to which this Prompt is subordinate</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The Prompt to which this Prompt is subordinate</inlineHelpText>
+    <label>Parent Prompt</label>
+    <referenceTo>Prompt__c</referenceTo>
+    <relationshipLabel>Child Prompts</relationshipLabel>
+    <relationshipName>Prompts</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

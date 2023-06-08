@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentAsset xmlns="http://soap.sforce.com/2006/04/metadata">
+    <isVisibleByExternalUsers>false</isVisibleByExternalUsers>
+    <language>en_US</language>
+    <masterLabel>SalesforceDevopsnet_An_icon_that_is</masterLabel>
+    <relationships>
+        <organization>
+            <access>VIEWER</access>
+        </organization>
+    </relationships>
+    <versions>
+        <version>
+            <number>1</number>
+            <pathOnClient>SalesforceDevops.net_An_icon_that_is_robot_with_a_wrench_in_one_cd929c3e-0e77-46d6-817b-f53f34b73c99.png</pathOnClient>
+        </version>
+    </versions>
+</ContentAsset>

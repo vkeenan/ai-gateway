@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prompt__c</fullName>
+    <description>The text of the Prompt for Completions, the Input field for Edits, and the User message for Chats</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The text of the Prompt for Completions, the Input field for Edits, and the User message for Chats</inlineHelpText>
+    <label>Prompt</label>
+    <length>8196</length>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>10</visibleLines>
+</CustomField>

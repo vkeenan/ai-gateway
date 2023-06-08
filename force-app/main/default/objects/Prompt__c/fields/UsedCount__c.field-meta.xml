@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>UsedCount__c</fullName>
+    <description>The count of how many times this prompt has been used</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The count of how many times this prompt has been used</inlineHelpText>
+    <label>Used Count</label>
+    <precision>10</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>
