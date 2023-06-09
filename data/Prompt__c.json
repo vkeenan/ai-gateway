@@ -6,7 +6,7 @@
                 "referenceId": "Prompt__cRef1"
             },
             "Name": "Trigger Handler Class",
-            "Model__c": "code-davinci-edit-001",
+            "Model__c": "gpt-3.5-turbo",
             "Order__c": 2,
             "Parameters__c": "{\"NewClassName.cls\" : \"NewClassName.cls\"}",
             "UsedCount__c": null,
@@ -82,20 +82,6 @@
             "UsedCount__c": null,
             "Tags__c": "Trigger",
             "Prompt__c": "## Task 3: Generate a Trigger\r\n\r\nGenerate a new Apex Trigger called `{NewClassName.trigger}` according to the following pattern:\r\n\r\n```apex\r\ntrigger CourseTrigger on Course__c (after insert) {\r\n\tif (Trigger.isAfter && Trigger.isInsert) {\r\n\t\tCourseTriggerHandler.afterInsert(trigger.NewMap);\r\n\t}\r\n}\r\n```",
-            "System__c": null
-        },
-        {
-            "attributes": {
-                "type": "Prompt__c",
-                "referenceId": "Prompt__cRef7"
-            },
-            "Name": "Apex REST API",
-            "Model__c": null,
-            "Order__c": 0,
-            "Parameters__c": null,
-            "UsedCount__c": null,
-            "Tags__c": "Apex\r\nREST API",
-            "Prompt__c": "# Apex Generation\r\n\r\nSystem: Your are an AI pair programmer expert in Salesforce languages, Salesforce architecture, and formal Salesforce architecture nomenclature. You are tasked with generating Apex code according to a pattern you will be show for each task.",
             "System__c": null
         }
     ]

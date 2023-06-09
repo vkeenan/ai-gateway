@@ -10,6 +10,7 @@ The sf-prompts project is an open-source software repository dedicated to provid
   - [Project Description](#project-description)
   - [Table of Contents](#table-of-contents)
   - [Project Setup](#project-setup)
+  - [Salesforce Setup](#salesforce-setup)
     - [OpenAI Setup](#openai-setup)
       - [Get OpenAI API Key and Organization ID](#get-openai-api-key-and-organization-id)
       - [Create External Credential](#create-external-credential)
@@ -36,6 +37,8 @@ The sf-prompts project is an open-source software repository dedicated to provid
 
 The code provided is designed to work out-of-the-box with Salesforce scratch orgs. You should also be able to adapt it to work with other Salesforce orgs by deploying the metadata elements manually. Below are instructions for setting up a scratch org and deploying the sample prompts.
 
+## Salesforce Setup
+
 Please be careful to follow the setup instructions precisely. The OpenAI integration depends on the exact values used in other steps.
 
 These instructions assume you don't already have a dev-hub org set up. If you do, you can skip the first two steps.
@@ -59,6 +62,8 @@ You need to get an OpenAI API key and then configure Salesforce to use it proper
 
 #### Get OpenAI API Key and Organization ID
 
+To use sf-prompts you will need an OpenAI API key and Organization ID. You can get these by following these steps:
+
 1. Go to <https://platform.openai.com/> and sign up for an API account. You can get a free tier account, but you will be restricted in the number of api calls you can make. And you'll be restricted to the gpt-3.5-turbo model.
 2. Visit <https://platform.openai.com/account/api-keys> and generate a new key for this project. Keep it in a safe place, and don't put it in any repository.
 3. Visit <https://platform.openai.com/account/org-settings> and copy the Organization ID. You'll need this later.
@@ -69,13 +74,17 @@ This is the rather lengthy procedure for storing the OpenAI API Key and Org ID i
 
 ##### Create Permission Set Mapping
 
-1. Click on down arrow in the Actions column next to Prompt Engineering and select Edit.
-1. Click Add on Authentication Parameters.
-1. Under Parameter 1, enter "apiKey" for the Name.
-1. Enter the OpenAI API key you generated in the previous section for the Value.
-1. Click Add on Authentication Parameters to add your organization id as the second parameter.
-1. Under Parameter 2, enter "Org" for the Name and enter your Organization ID for the Value.
-1. Click Save for Permission Set Mappings.
+1. From the VS Code terminal, enter the command `make open` to go to the scratch org setup page.
+2. Enter "named" in the Quick Find box and select Named Credentials.
+3. Click on the External Credentials tab.
+4. Click on the OpenAI External Credential item to edit its details.
+5. Click on down arrow in the Actions column next to Prompt Engineering and select Edit.
+6. Click Add on Authentication Parameters.
+7. Under Parameter 1, enter "apiKey" for the Name.
+8. Enter the OpenAI API key you generated in the previous section for the Value.
+9. Click Add on Authentication Parameters to add your organization id as the second parameter.
+10. Under Parameter 2, enter "Org" for the Name and enter your Organization ID for the Value.
+11. Click Save for Permission Set Mappings.
 
 ##### Create Custom Headers
 

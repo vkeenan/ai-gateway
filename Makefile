@@ -1,4 +1,4 @@
-.PHONY: build open
+.PHONY: build open push pull export
 
 build:
 	./scripts/build.sh
@@ -11,3 +11,6 @@ push:
 
 pull:
 	./scripts/pull.sh
+
+export:
+	./scripts/export.sh
