@@ -22,7 +22,7 @@ The sf-prompts project is an open-source software repository dedicated to provid
   - [Project Deployment](#project-deployment)
   - [Project Roadmap](#project-roadmap)
   - [Project Contributing](#project-contributing)
-  - [Project License](#project-license)
+  - [License](#license)
   - [Project Code of Conduct](#project-code-of-conduct)
   - [Project Contact Information](#project-contact-information)
   - [Project Acknowledgements](#project-acknowledgements)
@@ -85,10 +85,11 @@ This is the rather lengthy procedure for storing the OpenAI API Key and Org ID i
 9. Click Add on Authentication Parameters to add your organization id as the second parameter.
 10. Under Parameter 2, enter "Org" for the Name and enter your Organization ID for the Value.
 11. Click Save for Permission Set Mappings.
+12. Close the Permission Set Mapping window and then refresh your page to avoid any anomolies.
 
 ##### Create Custom Headers
 
-You need to create 3 custom header records within the External Credential. This is necessary because the OpenAI API requires 3 custom headers to be sent with each request. 
+You need to create three custom header records within the External Credential. This is necessary because the OpenAI API requires three custom headers to be sent with each request.
 
 Here are the three headers. They use the specific names and values from prior steps, so be sure you followed those instructions exactly.
 
@@ -104,19 +105,19 @@ Follow these steps to create the custom headers:
 2. Copy the first Header Name and Header Value from the table above.
 3. Click Save
 4. Repeat steps 1-3 for the other two headers.
-5. Click on the `Named Credentials` label a the top of the page and then click on `Named Credenitals` tab to return to the list of Named Credentials.
 
 #### Create Named Credential
 
 Now that we have the External Credential created, we can create the Named Credential that will be used by the Apex code to make the API calls. Ensure you are using the exact values specified here because the Flow and Apex code rely on them.
 
+1. Click on the `Named Credentials` label a the top of the page and then click on `Named Credenitals` tab to return to the list of Named Credentials.
 1. Click New on Named Credentials.
-2. Enter `OpenAIChat` for the Label and Name.
-3. Enter `https://api.openai.com/v1/chat/completions` for the URL.
-4. Click in the External Credential field and select `OpenAI`.
-5. Unclick the `Generate Authorization Header` checkbox.
-6. Click `Allow Formulas in HTTP Header` checkbox.
-7. Click Save.
+1. Enter `OpenAIChat` for the Label and Name.
+1. Enter `https://api.openai.com/v1/chat/completions` for the URL.
+1. Click in the External Credential field and select `OpenAI`.
+1. Unclick the `Generate Authorization Header` checkbox.
+1. Click `Allow Formulas in HTTP Header` checkbox.
+1. Click Save.
 
 Congratulations! You have completed the setup required to use the OpenAI API from within you Salesforce org, and your API key is safely stored in Salesforce. You are ready to start using the sample prompts.
 
@@ -141,9 +142,9 @@ Congratulations! You have completed the setup required to use the OpenAI API fro
 
 ... (pending instructions here) ...
 
-## Project License
+## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the terms of the MIT license. For more details, see the [LICENSE](./LICENSE) file.
 
 ## Project Code of Conduct
 

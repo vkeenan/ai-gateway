@@ -1,13 +1,80 @@
+/**
+ * OpenAIConnect Class
+ *
+ * @description This class provides a connection to the OpenAI API.
+ * It allows sending prompts to OpenAI, and handles the responses
+ * received from OpenAI, parsing the data into a usable format for Salesforce.
+ *
+ * Main functionality:
+ * - Prepares the prompts before sending to OpenAI API
+ * - Sends a HTTP request to OpenAI API with the appropriate prompts and settings
+ * - Parses the HTTP response from OpenAI API, extracting key information such as
+ *   the generated text, finish reason, response ID and tokens used.
+ * - Returns a list of outputs containing key information for each input prompt.
+ *
+ * Usage:
+ * An instance of this class is not needed. It exposes a static method "connect"
+ * which can be called with a list of "openAiInputs" objects. The method returns
+ * a list of "openAiOutputs" objects, each corresponding to an input prompt.
+ *
+ * Example:
+ * List<OpenAIConnect.openAiInputs> inputs = new List<OpenAIConnect.openAiInputs>();
+ * List<OpenAIConnect.openAiOutputs> outputs = OpenAIConnect.connect(inputs);
+ *
+ * Notes:
+ * Make sure to handle potential exceptions when calling the "connect" method,
+ * especially when network issues might occur or when the input prompts are not valid.
+ *
+ * Using OpenAIConnect with Salesforce Flow
+ *
+ * Salesforce Flows provide a visual way of representing and customizing complex business
+ * processes. OpenAIConnect can be used within a Flow to facilitate interaction with
+ * the OpenAI API as part of these processes.
+ *
+ * Here's a basic step-by-step guide on how to use OpenAIConnect with a Flow:
+ *
+ * 1. Begin by creating a new Flow in Salesforce. In your Salesforce Setup,
+ *    navigate to Flows and click on "New Flow".
+ *
+ * 2. Choose the Flow type that suits your needs, generally a Record-Triggered or
+ *    Scheduled-Triggered Flow will be used.
+ *
+ * 3. In the Flow Builder, you'll need to create a new Action. This action will
+ *    represent the call to OpenAIConnect.connect method.
+ *
+ * 4. Search for and select the "OpenAIConnect" Apex Class and the "connect" method.
+ *    A set of input and output variables corresponding to the "openAiInputs" and
+ *    "openAiOutputs" will be generated.
+ *
+ * 5. Set the necessary input fields. These fields can be set to static values,
+ *    or they can be populated dynamically based on other aspects of the Flow.
+ *
+ * 6. Save the Action and use the Flow Builder to define what should happen with
+ *    the outputs. For instance, you could create a Record with the OpenAI's
+ *    generated response, or send an Email with its contents.
+ *
+ * 7. Complete the Flow by setting the necessary conditions and actions, then
+ *    Save and Activate the Flow.
+ *
+ * Note: Be sure to handle potential exceptions and errors in the Flow, as network
+ * issues might occur or the input prompts might not be valid.
+
+ */
 public class OpenAIConnect {
+	private static final Decimal DEFAULT_TEMPERATURE = 0.1;
+	private static final Integer DEFAULT_TOKENS = 1700;
+	private static final String DEFAULT_SYSTEMPROMPT = 'You are a helpful assistant.';
+	private static final String DEFAULT_MODEL = 'gpt-3.5-turbo';
+
 	@invocableMethod
 	public static List <openAiOutputs> connect(List<openAiInputs> inputs) {
 		// defines the output list
 		List<openAiOutputs> outputs = new List<openAiOutputs>();
 
 		for (openAiInputs curInput : inputs) {
-			String userInput = curInput.openaiInput;
-			String instruction = curInput.openaiInstruction;
-			String prompt = curInput.openaiPrompt;
+			String chatHistory = curInput.openaiChatHistory;
+			String systemPrompt = curInput.openaiSystem;
+			String prompt = curInput.openaiPrompt; // required
 			String promptParameters = curInput.promptParameters;
 			String model = curInput.settingsModel;
 			Integer tokens = curInput.settingsTokens;
@@ -19,11 +86,6 @@ public class OpenAIConnect {
 			String finishReason = '';
 			String replyID = '';
 			Integer tokensUsed = 0;
-
-			// set default values for prompt, model, tokens and maximum temperature if not provided by Flow
-			if (prompt == '' || prompt == null) {
-				prompt = userInput + ' ' + instruction;
-			}
 
 			// Substitute parameters in prompt
 			// promptParameters is a JSON string with key/value pairs
@@ -43,26 +105,64 @@ public class OpenAIConnect {
 			}
 
 			if (model == null || model == '') {
-				model = 'text-davinci-003';
+				model = DEFAULT_MODEL;
 			}
 
 			if (tokens < 0 || tokens > 4096 || tokens == null) {
-				tokens = 1700;
+				tokens = DEFAULT_TOKENS;
 			}
 
 			if (temperature < 0 || temperature > 1 || temperature == null) {
-				temperature = 0.1;
+				temperature = DEFAULT_TEMPERATURE;
 			}
+
+			// Set up the system and user messages
+			List<Map<String, String>> messages = new List<Map<String, String>>();
+
+			// Add a system message if available
+			if (systemPrompt != null && systemPrompt != '') {
+				messages.add(new Map<String, String> {
+					'role' => 'system',
+					'content' => systemPrompt
+				});
+			} else if (chatHistory != null && chatHistory != '') {
+				// Add the chat history
+				List<Map<String, String>> chatHistoryList = (List<Map<String, String>>)JSON.deserialize(chatHistory, List<Map<String, String>>.class);
+
+				for (Map<String, String> message : chatHistoryList) {
+					messages.add(message);
+				}
+			} else {
+				// Add a default system message
+				messages.add(new Map<String, String> {
+					'role' => 'system',
+					'content' => DEFAULT_SYSTEMPROMPT
+				});
+			}
+
+			// Add the user message
+			messages.add(new Map<String, String> {
+				'role' => 'user',
+				'content' => prompt
+			});
+
+			// JSON generation for the new chat-based API format
+			Map<String, Object> jsonBody = new Map<String, Object> {
+				'model' => model,
+				'messages' => messages,
+				'temperature' => temperature,
+				'max_tokens' => tokens
+			};
+			String postString = JSON.serialize(jsonBody);
 
 			HttpRequest req = new HttpRequest();
 			// set the endpoint to the endpoint defined in named credentials of Salesforce
-			req.setEndpoint('callout:' + endpoint + '');
-			// set the timeout to 2 minutes
-			req.setTimeout(120000);
+			req.setEndpoint('callout:' + endpoint);
+			// set the timeout to 3 minutes
+			req.setTimeout(180000);
 			// define POST for method endpoint
 			req.setMethod('POST');
 			// set the body of the request
-			String postString = '{"model": "' + model + '", "prompt": "' + EncodingUtil.urlEncode(prompt, 'UTF-8') + '", "max_tokens": ' + tokens + ', "temperature": ' + temperature + ', "top_p": 0.2, "n": 1}';
 			req.setBody(postString);
 			system.debug('JSON body: ' + req.getBody());
 			// create a new HTTP object
@@ -159,11 +259,11 @@ public class OpenAIConnect {
 	public class openAiInputs {
 		@InvocableVariable(required = false label = 'Prompt Parameters' description = 'Is a JSON body of the prompt parameters')
 		public String promptParameters;
-		@InvocableVariable(required = false label = 'Open AI Instruction' description = 'Is what the AI should do with the input')
-		public String openaiInstruction;
-		@InvocableVariable(required = false label = 'Open AI Input' description = 'Is the input into the AI model')
-		public String openaiInput;
-		@InvocableVariable(required = false label = 'Open AI Prompt' description = 'Is a composition of Input and Instruction. Leave empty if Input and Instruction are provided')
+		@InvocableVariable(required = false label = 'Open AI System Prompt' description = 'Is the system prompt for what to do with the prompt text')
+		public String openaiSystem;
+		@InvocableVariable(required = false label = 'Open AI Chat History' description = 'Is the chat history')
+		public String openaiChatHistory;
+		@InvocableVariable(required = false label = 'Open AI Prompt' description = 'Is the prompt for the AI model')
 		public String openaiPrompt;
 		@InvocableVariable(required = false label = 'Open AI Model' description = 'Defines the model used of the AI.')
 		public String settingsModel;
@@ -171,9 +271,10 @@ public class OpenAIConnect {
 		public Integer settingsTokens;
 		@InvocableVariable(required = false label = 'Temperature' description = 'Temperature of the model to be used.')
 		public Double settingsTemperature;
-		@InvocableVariable(required = false label = 'Open AI Endpoint Name' description = 'Endpoint to which you want to call.')
+		@InvocableVariable(required = false label = 'Open AI Endpoint Name' description = 'Named Credential to which you want to call.')
 		public String settingsEndpoint;
 	}
+
 	public class openAiOutputs {
 		@InvocableVariable(required = false label = 'Open AI Text Output' description = 'Provides the text response from OpenAI model as a String.')
 		public String openAiTextOutput;

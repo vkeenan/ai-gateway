@@ -51,11 +51,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Prompt__c.Logo__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Prompt__c.Model__c</field>
         <readable>false</readable>
     </fieldPermissions>

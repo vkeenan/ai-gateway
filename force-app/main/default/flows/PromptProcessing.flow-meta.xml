@@ -51,7 +51,7 @@
         <name>NamedCredential</name>
         <dataType>String</dataType>
         <value>
-            <stringValue>OpenAICompletion</stringValue>
+            <stringValue>OpenAIChat</stringValue>
         </value>
     </constants>
     <dynamicChoiceSets>
@@ -228,6 +228,15 @@
             <fieldType>LargeTextArea</fieldType>
             <isRequired>false</isRequired>
         </fields>
+        <fields>
+            <name>System_Prompt</name>
+            <defaultValue>
+                <stringValue>{!PromptRecord.System__c}</stringValue>
+            </defaultValue>
+            <fieldText>System Prompt used to shape response</fieldText>
+            <fieldType>LargeTextArea</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>
@@ -238,7 +247,7 @@
             <targetReference>PromptRecord</targetReference>
         </connector>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
     <variables>
         <name>aiAnswer</name>
         <dataType>String</dataType>

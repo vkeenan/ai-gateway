@@ -63,11 +63,12 @@
         <li>Click Add on Authentication Parameters to add your organization id as the second parameter.</li>
         <li>Under Parameter 2, enter "Org" for the Name and enter your Organization ID for the Value.</li>
         <li>Click Save for Permission Set Mappings.</li>
+        <li>Close the Permission Set Mapping window and then refresh your page to avoid any Salesforce behavior anomolies.</li>
       </ol>
       <h3 style="font-size:1.5em;margin-bottom: 1em;">Create Custom Headers</h3>
       <p style="font-size:1.5em;margin-bottom: 1em;">
-        You need to create 3 custom header records within the External Credential. This is necessary because the OpenAI API requires
-        3 custom headers to be sent with each request. Here are the three headers. They use the specific names and values
+        You need to create three custom header records within the External Credential. This is necessary because the OpenAI API requires
+        three custom headers to be sent with each request. Here are the three headers. They use the specific names and values
         from prior steps, so be sure you followed those instructions exactly.
       </p>
       <table style="font-size:1.5em;margin-bottom: 1em;">
@@ -96,11 +97,11 @@
         <li>Copy the first Header Name and Header Value from the table above.</li>
         <li>Click Save</li>
         <li>Repeat steps 1-3 for the other two headers.</li>
-        <li>Click on the `Named Credentials` label a the top of the page and then click on `Named Credenitals` tab to return
-          to the list of Named Credentials.</li>
       </ol>
       <h3 style="font-size:1.5em;margin-bottom: 1em;">Create Named Credential</h3>
       <ol style="font-size:1.5em;">
+        <li>Click on the `Named Credentials` label a the top of the page and then click on `Named Credenitals` tab to return
+          to the list of Named Credentials.</li>
         <li>Click New on Named Credentials.</li>
         <li>Enter `OpenAIChat` for the Label and Name.</li>
         <li>Enter `https://api.openai.com/v1/chat/completions` for the URL.</li>

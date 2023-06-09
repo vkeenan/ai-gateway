@@ -14,3 +14,7 @@ pull:
 
 export:
 	./scripts/export.sh
+
+sync:
+	./scripts/push.sh
+	./scripts/pull.sh

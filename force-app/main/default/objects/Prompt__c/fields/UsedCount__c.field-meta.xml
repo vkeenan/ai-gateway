@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>UsedCount__c</fullName>
+    <defaultValue>0</defaultValue>
     <description>The count of how many times this prompt has been used</description>
     <externalId>false</externalId>
     <inlineHelpText>The count of how many times this prompt has been used</inlineHelpText>

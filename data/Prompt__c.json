@@ -5,6 +5,20 @@
                 "type": "Prompt__c",
                 "referenceId": "Prompt__cRef1"
             },
+            "Name": "Markdown to VisualForce",
+            "Model__c": "gpt-4",
+            "Order__c": 0,
+            "Parameters__c": "{\"MarkdownText\":\"escapedMarkdown\", \"HeaderLevel\": 2}",
+            "UsedCount__c": 0,
+            "Tags__c": "VisualForce\r\nDevelopment",
+            "Prompt__c": "Convert this markdown to VisualForce.\r\n```markdown\r\n{MarkdownText}\r\n```",
+            "System__c": "You are a helpful AI Pair programmer expert in Salesforce languages. When given patterns surrounded by triple-backticks it is your job to reproduce patterns with new identifiers when asked. When fed Markdown text, convert the following special characters into their escaped `&` equivalents: `{}\\'. \r\n\r\nHere is a pattern we use in VisualForce Pages:\r\n```VisualForce\r\n    <apex:outputText>\r\n      <h2 style=\"font-size:3em; margin-bottom: 1em;\">Welcome!</h2>\r\n      <p>\r\n        <img style=\"margin-bottom: 1em;\" src=\"https://salesforcedevops.net/wp-content/uploads/2023/06/SalesforceDevops.net_An_icon_that_is_robot_with_a_wrench_in_one_cd929c3e-0e77-46d6-817b-f53f34b73c99.jpg\"\r\n          alt=\"Welcome image\" height=\"256\" width=\"265\" />\r\n      </p>\r\n      <p style=\"font-size:1.5em;margin-bottom: 1em;\">We are glad you are here. The Prompt Engineering App enables you to interact with the OpenAI API, create and store\r\n        prompts, and receive AI-generated responses. Explore the statistics below to see the current system usage. Happy\r\n        coding!\r\n      </p>\r\n      <h2 style=\"font-size:2em;margin-bottom: 1em;\">Getting Started</h2>\r\n      <p>&nbsp;</p>\r\n      <h3 style=\"font-size:1.5em;margin-bottom: 1em;\">Get OpenAPI Key and Org ID</h3>\r\n      <ol style=\"font-size:1.5em;\">\r\n        <li>\r\n          <a href=\"https://platform.openai.com/\">Go to the OpenAI website</a> and sign up for an API account. You can get a free tier account, but you will be restricted\r\n          in the number of API calls you can make. And you'll be restricted to the gpt-3.5-turbo model.</li>\r\n        <li>\r\n          <a href=\"https://platform.openai.com/account/api-keys\">Visit the API keys page</a> and generate a new key for this project. Keep it in a safe place, and don't put it\r\n          in any repository.</li>\r\n        <li>\r\n          <a href=\"https://platform.openai.com/account/org-settings\">Visit the Organization settings page</a> and copy the Organization ID. You'll need this later.</li>\r\n      </ol>\r\n\r\n      <p style=\"font-size:1.5em;margin-bottom: 1em;\">Once you have your API key and Organization ID, you can install the sf-prompts package and start using it.</p>\r\n\r\n      <p style=\"font-size:1.5em;margin-bottom: 1em;\">More Information:\r\n        <a href=\"https://salesforcedevops.net/prompt-engineering-app\">https://salesforcedevops.net/prompt-engineering-app</a>\r\n      </p>\r\n    </apex:outputText>\r\n```"
+        },
+        {
+            "attributes": {
+                "type": "Prompt__c",
+                "referenceId": "Prompt__cRef2"
+            },
             "Name": "Trigger Handler Class",
             "Model__c": "gpt-3.5-turbo",
             "Order__c": 2,
@@ -17,7 +31,7 @@
         {
             "attributes": {
                 "type": "Prompt__c",
-                "referenceId": "Prompt__cRef2"
+                "referenceId": "Prompt__cRef3"
             },
             "Name": "Service Wrapper Class",
             "Model__c": null,
@@ -31,7 +45,7 @@
         {
             "attributes": {
                 "type": "Prompt__c",
-                "referenceId": "Prompt__cRef3"
+                "referenceId": "Prompt__cRef4"
             },
             "Name": "Handler Class",
             "Model__c": null,
@@ -45,7 +59,7 @@
         {
             "attributes": {
                 "type": "Prompt__c",
-                "referenceId": "Prompt__cRef4"
+                "referenceId": "Prompt__cRef5"
             },
             "Name": "Service Class",
             "Model__c": null,
@@ -59,7 +73,7 @@
         {
             "attributes": {
                 "type": "Prompt__c",
-                "referenceId": "Prompt__cRef5"
+                "referenceId": "Prompt__cRef6"
             },
             "Name": "Response Class",
             "Model__c": null,
@@ -73,7 +87,7 @@
         {
             "attributes": {
                 "type": "Prompt__c",
-                "referenceId": "Prompt__cRef6"
+                "referenceId": "Prompt__cRef7"
             },
             "Name": "Trigger",
             "Model__c": "gpt-4",
