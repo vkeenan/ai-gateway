@@ -48,36 +48,36 @@ These instructions assume you don't already have a dev-hub org set up. If you do
 1. Install the Salesforce CLI. See instructions here: <https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm>.
 1. Install VS Code and Salesforce CLI Plugin for VS Code. See instructions here: <https://developer.salesforce.com/tools/vscode/en/vscode-desktop/install>.
 1. Extract the vkeenan/sf-prompts repository to your local machine. See instructions here: <https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository>.
-1. Use VS Code to open the new new folder.
+1. Use VS Code to open the `sf-prompts` folder.
 1. Open the Command Palette (Ctrl+Shift+P) and run the command SFDX: Authorize a Dev Hub.
 1. Select the dev-hub org you created in step 1.
-1. Open a terminal window in VS Code (Ctrl+Shift+`).
 1. Rename the environment file `scripts/.env.example` to `scripts/.env`.
-1. Open `scripts/.env` with VS Code and enter your Dev-Hub username. Save the file.
+1. Open the file `scripts/.env` with VS Code and enter your dev-hub username. Save the file.
+1. Open a terminal window in VS Code (Ctrl+Shift+`).
 1. Enter the command `make build` to create the scratch org and load the sample prompts.
 
 ### OpenAI Setup
 
-You need to get an OpenAI API key and then configure Salesforce to use it properly. This involes creatin a Named Credential and an External Credential. Once we enter the OpenAI keys into Salesforce, they will be safe and cannot be retrieved or copied to your local machine.
+You need to get an OpenAI API key and then configure Salesforce to use it properly. This involes creating a Named Credential and an External Credential. Once we enter the OpenAI keys into Salesforce, they will be safe and cannot be retrieved or copied to your local machine.
 
 #### Get OpenAI API Key and Organization ID
 
-To use sf-prompts you will need an OpenAI API key and Organization ID. You can get these by following these steps:
+To use `sf-prompts` you will need an OpenAI API key and Organization ID. You can get these by following these steps:
 
-1. Go to <https://platform.openai.com/> and sign up for an API account. You can get a free tier account, but you will be restricted in the number of api calls you can make. And you'll be restricted to the gpt-3.5-turbo model.
+1. Go to <https://platform.openai.com/> and sign up for an API account. You can get a free tier account, but you will be restricted in the number of api calls you can make. And you'll be restricted to the `gpt-3.5-turbo` model.
 2. Visit <https://platform.openai.com/account/api-keys> and generate a new key for this project. Keep it in a safe place, and don't put it in any repository.
 3. Visit <https://platform.openai.com/account/org-settings> and copy the Organization ID. You'll need this later.
 
 #### Create External Credential
 
-This is the rather lengthy procedure for storing the OpenAI API Key and Org ID in Salesforce. It is necessary because Named Credentials do not support custom authentication parameters. So, we have to create an External Credential to store the API key and then reference the External Credential in the Named Credential. I managed to pre-load part of the External Credential in the GitHub metadata, but the rest needs to set up manually. Here is the Salesforce documentation: <https://help.salesforce.com/s/articleView?id=sf.external_services_define_named_credential.htm>.
+This is the lengthy procedure for storing the OpenAI API Key and Org ID in Salesforce. Have to create an External Credential to store the API key and then reference the External Credential in the Named Credential. I managed to pre-load parts of the External Credential and Named Credential with project metadata, but the rest needs to set up manually. Here is the Salesforce documentation: <https://help.salesforce.com/s/articleView?id=sf.external_services_define_named_credential.htm>.
 
 ##### Create Permission Set Mapping
 
 1. From the VS Code terminal, enter the command `make open` to go to the scratch org setup page.
 2. Enter "named" in the Quick Find box and select Named Credentials.
 3. Click on the External Credentials tab.
-4. Click on the OpenAI External Credential item to edit its details.
+4. Click on the OpenAI item to edit its details.
 5. Click on down arrow in the Actions column next to Prompt Engineering and select Edit.
 6. Click Add on Authentication Parameters.
 7. Under Parameter 1, enter "apiKey" for the Name.
@@ -90,8 +90,6 @@ This is the rather lengthy procedure for storing the OpenAI API Key and Org ID i
 ##### Create Custom Headers
 
 You need to create three custom header records within the External Credential. This is necessary because the OpenAI API requires three custom headers to be sent with each request.
-
-Here are the three headers. They use the specific names and values from prior steps, so be sure you followed those instructions exactly.
 
 | Header Name         | Header Value                        |
 | ------------------- | ----------------------------------- |

@@ -159,7 +159,7 @@ public class OpenAIConnect {
 			// set the endpoint to the endpoint defined in named credentials of Salesforce
 			req.setEndpoint('callout:' + endpoint);
 			// set the timeout to 3 minutes
-			req.setTimeout(180000);
+			req.setTimeout(120000);
 			// define POST for method endpoint
 			req.setMethod('POST');
 			// set the body of the request
@@ -169,70 +169,45 @@ public class OpenAIConnect {
 			Http http = new Http();
 			// send the request
 			HttpResponse res = http.send(req);
-
-			// create a new JSON parser
-			JSONParser parser = JSON.createParser(res.getBody());
-			// create variables to store the reason for finishing and the reply ID
-
-			// loop through the response
-			while (parser.nextToken() != null) {
-				// if the current token is a field name and the text is 'text'
-				if ((parser.getCurrentToken() == JSONToken.FIELD_NAME) &&
-				    (parser.getText() == 'text')) {
-					// Get the value.
-					parser.nextToken();
-					// Add the text to the output variable
-					output.openAiTextOutput = EncodingUtil.urlDecode(parser.getText(), 'UTF-8');
-				}
-
-				// if the current token is a field name and the text is 'id'
-				if ((parser.getCurrentToken() == JSONToken.FIELD_NAME) &&
-				    (parser.getText() == 'id')) {
-					// Get the value.
-					parser.nextToken();
-					// Add the text to the output variable
-					output.replyID = parser.getText();
-				}
-
-				// if the current token is a field name and the text is 'finish_reason'
-				if ((parser.getCurrentToken() == JSONToken.FIELD_NAME) &&
-				    (parser.getText() == 'finish_reason')) {
-					// Get the value.
-					parser.nextToken();
-					// Add the text to the output variable
-					output.finishReason = parser.getText();
-				}
-
-				if ((parser.getCurrentToken() == JSONToken.FIELD_NAME) &&
-				    (parser.getText() == 'total_tokens')) {
-					// Get the value.
-					parser.nextToken();
-					// Add the integer to the output variable
-					output.tokensUsed = parser.getIntegerValue();
-				}
-
-				if ((parser.getCurrentToken() == JSONToken.FIELD_NAME) &&
-				    (parser.getText() == 'message')) {
-					// Get the value.
-					parser.nextToken();
-					// Add the integer to the output variable
-					openAiTextOutput = parser.getText();
-				}
-			}
-
 			// Check the status code of the response
+			String responseBody = res.getBody();
+
 			if (res.getStatusCode() == 200) {
-				System.debug('Response Body: ' + res.getBody());
-				System.debug('ReplyID: ' + replyID);
-				System.debug('finishReason: ' + finishReason);
-				System.debug('tokensUsed: ' + tokensUsed);
-			}
-			else {
+				System.debug('Response Body: ' + responseBody);
+			} else {
 				output.openAiTextOutput = openAiMessage;
 				System.debug('Error connecting to OpenAI: ' + res.getStatusCode() + '' + res.getStatus() + '' + res.getBody());
 			}
 
-			// add the output to the output list
+			Map<String, Object> deserializedResponse = (Map<String, Object>)JSON.deserializeUntyped(responseBody);
+
+			output.replyID = (String)deserializedResponse.get('id');
+			output.openAiObject = (String)deserializedResponse.get('object');
+			output.openAiCreated = Datetime.newinstance((Integer)deserializedResponse.get('created'));
+			output.openAiModel = (String)deserializedResponse.get('model');
+
+			Map<String, Object> usage = (Map<String, Object>)deserializedResponse.get('usage');
+			Integer prompt_tokens = Integer.valueOf(usage.get('prompt_tokens'));
+			Integer completion_tokens = Integer.valueOf(usage.get('completion_tokens'));
+			output.tokensUsed = Integer.valueOf(usage.get('total_tokens'));
+
+			List<Object> choices = (List<Object>)deserializedResponse.get('choices');
+
+			for (Object choice : choices) {
+				Map<String, Object> choiceMap = (Map<String, Object>)choice;
+				Map<String, Object> message = (Map<String, Object>)choiceMap.get('message');
+				String role = (String)message.get('role');
+				String content = (String)message.get('content');
+				String finish_reason = (String)choiceMap.get('finish_reason');
+				Integer index = (Integer)choiceMap.get('index');
+				output.openAiTextOutput = content;
+				output.finishReason = finish_reason;
+				System.debug('Role: ' + role);
+				System.debug('Content: ' + content);
+				System.debug('Finish Reason: ' + finish_reason);
+				System.debug('Index: ' + index);
+			}
+
 			outputs.add(output);
 		}
 
@@ -263,7 +238,7 @@ public class OpenAIConnect {
 		public String openaiSystem;
 		@InvocableVariable(required = false label = 'Open AI Chat History' description = 'Is the chat history')
 		public String openaiChatHistory;
-		@InvocableVariable(required = false label = 'Open AI Prompt' description = 'Is the prompt for the AI model')
+		@InvocableVariable(required = true label = 'Open AI Prompt' description = 'Is the prompt for the AI model')
 		public String openaiPrompt;
 		@InvocableVariable(required = false label = 'Open AI Model' description = 'Defines the model used of the AI.')
 		public String settingsModel;
@@ -276,6 +251,12 @@ public class OpenAIConnect {
 	}
 
 	public class openAiOutputs {
+		@InvocableVariable(required = false label = 'Open AI Created' description = 'Date and time the AI was created')
+		public Datetime openAiCreated;
+		@InvocableVariable(required = false label = 'Open AI Model' description = 'ID of the AI response')
+		public String openAiModel;
+		@InvocableVariable(required = false label = 'Open AI Object Type response' description = 'Is the prompt for the AI model')
+		public String openAiObject;
 		@InvocableVariable(required = false label = 'Open AI Text Output' description = 'Provides the text response from OpenAI model as a String.')
 		public String openAiTextOutput;
 		@InvocableVariable(required = false label = 'ReplyId' description = 'ReplyID of the Ai response')

@@ -18,9 +18,21 @@
             </value>
         </inputParameters>
         <inputParameters>
+            <name>settingsModel</name>
+            <value>
+                <elementReference>ModelChoice</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
             <name>openaiPrompt</name>
             <value>
                 <elementReference>EditPrompt</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>openaiSystem</name>
+            <value>
+                <elementReference>System_Prompt</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -32,6 +44,14 @@
         <outputParameters>
             <assignToReference>aiFinishReason</assignToReference>
             <name>finishReason</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>aiModelUsed</assignToReference>
+            <name>openAiModel</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>alObjectPath</assignToReference>
+            <name>openAiObject</name>
         </outputParameters>
         <outputParameters>
             <assignToReference>aiAnswer</assignToReference>
@@ -122,6 +142,18 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>SystemUsed__c</field>
+            <value>
+                <elementReference>System_Prompt</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TokensUsed__c</field>
+            <value>
+                <elementReference>tokensUsed</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>Type__c</field>
             <value>
                 <stringValue>Normal</stringValue>
@@ -163,16 +195,6 @@
             <name>PleaseWait</name>
             <fieldText>&lt;p&gt;Please stand by...OpenAI response can take up to two minutes...&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <visibilityRule>
-                <conditionLogic>1</conditionLogic>
-                <conditions>
-                    <leftValueReference>Answer</leftValueReference>
-                    <operator>NotEqualTo</operator>
-                    <rightValue>
-                        <stringValue></stringValue>
-                    </rightValue>
-                </conditions>
-            </visibilityRule>
         </fields>
         <fields>
             <name>Answer</name>
@@ -247,7 +269,7 @@
             <targetReference>PromptRecord</targetReference>
         </connector>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>aiAnswer</name>
         <dataType>String</dataType>
@@ -278,8 +300,29 @@
         <scale>0</scale>
     </variables>
     <variables>
+        <name>aiModelUsed</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
         <name>aiPrompt</name>
         <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>alObjectPath</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>openAiDate</name>
+        <dataType>DateTime</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
