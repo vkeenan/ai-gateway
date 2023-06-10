@@ -215,22 +215,6 @@ public class OpenAIConnect {
 		return outputs;
 	}
 
-	public static String preparePrompt(String prompt) {
-		// Replace multiple consecutive whitespace characters (not including newlines) with a single space
-		String promptWithSingleSpaces = prompt.replaceAll('\\s+', ' ');
-
-		// Replace multiple consecutive newline characters with a single newline
-		String minifiedPrompt = promptWithSingleSpaces.replaceAll('\\n+', '\n');
-
-		// Remove lines that start with #, ##, or ###
-		// String promptWithoutComments = minifiedPrompt.replaceAll('(?m)^\\s*#.*$', '');
-
-		// URL encode the string for safe HTTP transmission
-		String encodedPrompt = EncodingUtil.urlEncode(minifiedPrompt, 'UTF-8');
-
-		return encodedPrompt;
-	}
-
 	public class openAiInputs {
 		@InvocableVariable(required = false label = 'Prompt Parameters' description = 'Is a JSON body of the prompt parameters')
 		public String promptParameters;
