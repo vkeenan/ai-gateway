@@ -9,7 +9,7 @@ sfdx force:org:create -s -f $CONFIG_FILE -a $ORG_ALIAS --target-dev-hub $DEV_HUB
 
 # Push metadata to the scratch org
 sfdx project deploy start --target-org $ORG_ALIAS
-sfdx force:user:permset:assign --permsetname PromptEngineering --targetusername $ORG_ALIAS
+sfdx force:user:permset:assign --perm-set-name PromptEngineering --target-org $ORG_ALIAS
 # Import sample data
 sfdx data import tree \
     -f ./data/Prompt__c.json \

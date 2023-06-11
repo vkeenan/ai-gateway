@@ -156,7 +156,7 @@
     <externalSharingModel>Private</externalSharingModel>
     <label>Prompt Answer</label>
     <nameField>
-        <label>Prompt Answer Name</label>
+        <label>Answer Name</label>
         <type>Text</type>
     </nameField>
     <pluralLabel>Prompt Answers</pluralLabel>

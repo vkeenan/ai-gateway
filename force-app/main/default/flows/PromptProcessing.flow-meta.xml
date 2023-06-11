@@ -4,25 +4,13 @@
         <name>OpenAI_Connect</name>
         <label>OpenAI Connect</label>
         <locationX>176</locationX>
-        <locationY>398</locationY>
+        <locationY>350</locationY>
         <actionName>OpenAIConnect</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>Record_Answer</targetReference>
+            <targetReference>Increment_Counter</targetReference>
         </connector>
         <flowTransactionModel>Automatic</flowTransactionModel>
-        <inputParameters>
-            <name>settingsEndpoint</name>
-            <value>
-                <elementReference>NamedCredential</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>settingsModel</name>
-            <value>
-                <elementReference>ModelChoice</elementReference>
-            </value>
-        </inputParameters>
         <inputParameters>
             <name>openaiPrompt</name>
             <value>
@@ -41,6 +29,31 @@
                 <elementReference>ParameterValues</elementReference>
             </value>
         </inputParameters>
+        <inputParameters>
+            <name>settingsEndpoint</name>
+            <value>
+                <elementReference>NamedCredential</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>settingsModel</name>
+            <value>
+                <elementReference>ModelChoice</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>settingsTemperature</name>
+            <value>
+                <elementReference>Temperature</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>settingsTokens</name>
+            <value>
+                <elementReference>MaxTokens</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>OpenAIConnect</nameSegment>
         <outputParameters>
             <assignToReference>aiFinishReason</assignToReference>
             <name>finishReason</name>
@@ -54,6 +67,10 @@
             <name>openAiObject</name>
         </outputParameters>
         <outputParameters>
+            <assignToReference>TemperatureUsed</assignToReference>
+            <name>openAiTemperature</name>
+        </outputParameters>
+        <outputParameters>
             <assignToReference>aiAnswer</assignToReference>
             <name>openAiTextOutput</name>
         </outputParameters>
@@ -65,6 +82,7 @@
             <assignToReference>tokensUsed</assignToReference>
             <name>tokensUsed</name>
         </outputParameters>
+        <versionSegment>1</versionSegment>
     </actionCalls>
     <apiVersion>57.0</apiVersion>
     <constants>
@@ -74,6 +92,7 @@
             <stringValue>OpenAIChat</stringValue>
         </value>
     </constants>
+    <description>Execute an OpenAI API call with record data</description>
     <dynamicChoiceSets>
         <name>Model</name>
         <dataType>Picklist</dataType>
@@ -86,7 +105,13 @@
     <formulas>
         <name>AnswerName</name>
         <dataType>String</dataType>
-        <expression>&quot;Answer for &quot; &amp; {!PromptRecord.Name}</expression>
+        <expression>&quot;Answer for &quot; &amp; {!PromptRecord.Name} &amp; &quot; &quot; &amp; text(now())</expression>
+    </formulas>
+    <formulas>
+        <name>IncrementUsedCount</name>
+        <dataType>Number</dataType>
+        <expression>{!PromptRecord.UsedCount__c} + 1</expression>
+        <scale>2</scale>
     </formulas>
     <interviewLabel>Prompt Engineering {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prompt Processing</label>
@@ -113,7 +138,7 @@
         <name>Record_Answer</name>
         <label>Record Answer</label>
         <locationX>176</locationX>
-        <locationY>518</locationY>
+        <locationY>566</locationY>
         <connector>
             <targetReference>AnswerScreen</targetReference>
         </connector>
@@ -136,6 +161,12 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>PromptUsed__c</field>
+            <value>
+                <elementReference>EditPrompt</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>Prompt__c</field>
             <value>
                 <elementReference>PromptRecord.Id</elementReference>
@@ -145,6 +176,12 @@
             <field>SystemUsed__c</field>
             <value>
                 <elementReference>System_Prompt</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Temperature__c</field>
+            <value>
+                <elementReference>Temperature</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -166,7 +203,7 @@
         <name>PromptRecord</name>
         <label>PromptRecord</label>
         <locationX>176</locationX>
-        <locationY>158</locationY>
+        <locationY>134</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Prompt_Processing</targetReference>
@@ -183,22 +220,42 @@
         <object>Prompt__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordUpdates>
+        <description>Increment the Used Count field in the prompt</description>
+        <name>Increment_Counter</name>
+        <label>Increment Counter</label>
+        <locationX>176</locationX>
+        <locationY>458</locationY>
+        <connector>
+            <targetReference>Record_Answer</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>promptRecordId</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>UsedCount__c</field>
+            <value>
+                <elementReference>IncrementUsedCount</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Prompt__c</object>
+    </recordUpdates>
     <screens>
         <name>AnswerScreen</name>
         <label>Answer</label>
         <locationX>176</locationX>
-        <locationY>638</locationY>
+        <locationY>674</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <fields>
-            <name>PleaseWait</name>
-            <fieldText>&lt;p&gt;Please stand by...OpenAI response can take up to two minutes...&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
+        <allowPause>false</allowPause>
         <fields>
             <name>Answer</name>
-            <fieldText>&lt;p&gt;Text: {!aiAnswer}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 18px;&quot;&gt;ChatGPT Response&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Tokens Used: {!tokensUsed}&lt;/p&gt;&lt;p&gt;Model Used: {!aiModelUsed}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;u&gt;Answer Text&lt;/u&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;{!aiAnswer}&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
@@ -208,7 +265,7 @@
         <name>Prompt_Processing</name>
         <label>Prompt Processing</label>
         <locationX>176</locationX>
-        <locationY>278</locationY>
+        <locationY>242</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -230,6 +287,28 @@
             <fieldText>Model</fieldText>
             <fieldType>DropdownBox</fieldType>
             <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>Temperature</name>
+            <dataType>Number</dataType>
+            <defaultValue>
+                <elementReference>PromptRecord.Temperature__c</elementReference>
+            </defaultValue>
+            <fieldText>Temperature (aka Creativity, default = 0.1, up to 1.0 for max)</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
+            <scale>2</scale>
+        </fields>
+        <fields>
+            <name>MaxTokens</name>
+            <dataType>Number</dataType>
+            <defaultValue>
+                <elementReference>PromptRecord.MaxTokens__c</elementReference>
+            </defaultValue>
+            <fieldText>Max Tokens (default = auto, max = 2000)</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
+            <scale>0</scale>
         </fields>
         <fields>
             <name>ParameterValues</name>
@@ -340,6 +419,14 @@
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>TemperatureUsed</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>2</scale>
     </variables>
     <variables>
         <name>tokensUsed</name>

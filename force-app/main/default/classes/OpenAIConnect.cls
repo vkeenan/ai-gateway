@@ -171,6 +171,7 @@ public class OpenAIConnect {
 			HttpResponse res = http.send(req);
 			// Check the status code of the response
 			String responseBody = res.getBody();
+			output.openAiTemperature = temperature;
 
 			if (res.getStatusCode() == 200) {
 				System.debug('Response Body: ' + responseBody);
@@ -235,6 +236,8 @@ public class OpenAIConnect {
 	}
 
 	public class openAiOutputs {
+		@InvocableVariable(required = false label = 'Temperature' description = 'Temperature of the model to be used.')
+		public Double openAiTemperature;
 		@InvocableVariable(required = false label = 'Open AI Created' description = 'Date and time the AI was created')
 		public Datetime openAiCreated;
 		@InvocableVariable(required = false label = 'Open AI Model' description = 'ID of the AI response')

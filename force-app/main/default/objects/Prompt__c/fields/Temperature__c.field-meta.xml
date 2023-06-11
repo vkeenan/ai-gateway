@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Temperature__c</fullName>
+    <defaultValue>0.1</defaultValue>
+    <description>The &quot;Creativity Temperature&quot; to use in generating the Prompt Answer</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The &quot;Creativity Temperature&quot; to use in generating the Prompt Answer</inlineHelpText>
+    <label>Temperature</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>8</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>
