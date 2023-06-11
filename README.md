@@ -8,11 +8,9 @@ You can also use this repository to deploy the project to a Salesforce scratch o
 
 ![Robot with a Wrench and a Brush](images/SalesforceDevops.net_An_icon_that_is_robot_with_a_wrench.png)
 
-[![GitHub release](https://img.shields.io/github/release/vkeenan/ai-gateway.svg)]
-
 ## Project Description
 
-`AI Gateway for Salesforce` is an open-source project for Salesforce customers that allows their admins and developers to interact with OpenAI API. Utilizing a custom Salesforce object named `Prompt__c`, this project enables developers and users to create and store prompts that can be sent to the OpenAI chat completions API using the `gpt-4` and `gpt-3.5-turbo` models. The response from the API is then stored in the `PromptAnswer__c` object. This repository serves as a foundational tool for Salesforce customers interested in leveraging AI capabilities for B2B software and marketing applications.
+`AI Gateway for Salesforce` is an open-source project for Salesforce customers that allows their admins and developers to interact with OpenAI API. Utilizing a custom Salesforce object named `Prompt__c`, this project enables developers and users to create and store prompts that are sent to the OpenAI chat completions API using the `gpt-4` and `gpt-3.5-turbo` models. The response from the API is then stored in the `PromptAnswer__c` object. This repository serves as a foundational tool for Salesforce customers interested in leveraging AI capabilities for B2B software and marketing applications.
 
 `AI Gateway for Salesforce` is a bare-bones implementation of OpenAI API. It is intended to be a template for other organizations to being experimenting with OpenAI API. The OpenAI user interface is written is a very simple Flow, so it should be easy for admins and developers to customize the user interface to meet their needs.
 
@@ -38,9 +36,11 @@ Bottom line: according to these promises your data will not be saved and used fo
   - [Local Project Setup](#local-project-setup)
     - [OpenAI Setup](#openai-setup)
       - [Get OpenAI API Key and Organization ID](#get-openai-api-key-and-organization-id)
-    - [Salesforce Setup](#salesforce-setup)
+    - [Salesforce Scratch Org Setup](#salesforce-scratch-org-setup)
       - [Edit Permission Set Mapping](#edit-permission-set-mapping)
   - [Using AI Gateway for Salesforce](#using-ai-gateway-for-salesforce)
+    - [Using JSON Parameters](#using-json-parameters)
+    - [Executing a Prompt](#executing-a-prompt)
   - [License](#license)
   - [Project Contact Information](#project-contact-information)
   - [Project Acknowledgements](#project-acknowledgements)
@@ -51,17 +51,17 @@ Bottom line: according to these promises your data will not be saved and used fo
 
 ## Unmanaged Package Post-Installation Notes
 
-After installing the unmanaged package, you will need to do some additional setup to get the project working. The unmanaged package does not include the OpenAI API keys, so you will need to enter them manually. You will also need to set up the permission sets and permission set assignments. Navigate to the Prompt Engineering app and follow the post-installation instructions. Don't forget to assign designated users to the `PromptEngineering` permission set.
+After installing the unmanaged package, you will need to do some additional setup to get the project working. The unmanaged package does not include the OpenAI API keys, so you will need to enter them manually. Navigate to the Prompt Engineering app and follow the post-installation instructions. Don't forget to assign designated users to the `PromptEngineering` permission set!
 
-You can also load the sample prompts in this repository to your org. Copy the `Prompt__c.json` document in the `./data` folder to your local machine. Then use the Salesforce CLI to load the data into your org. Use the following command:
+You can also load the sample prompts found in this repository to your org. Copy the `Prompt__c.json` document in the `./data` folder to your local machine. Then use the Salesforce CLI to load the data into your org. Use the following command:
 
 ```bash
-sfdx data import tree -f ./data/Prompt__c.json --target-org <your-org-alias> 
+sfdx data import tree -f Prompt__c.json --target-org <your-org-alias> 
 ```
 
 ## Local Project Setup
 
-The code provided is designed to work out-of-the-box with Salesforce scratch orgs. You should also be able to adapt it to work with other Salesforce orgs by deploying the metadata elements manually. Below are instructions for setting up a scratch org and deploying the sample prompts.
+The code provided is designed to work out-of-the-box with Salesforce scratch orgs. You should also be able to adapt it to work with other Salesforce orgs by deploying the metadata elements manually.
 
 ### OpenAI Setup
 
@@ -75,9 +75,9 @@ To use `AI Gateway for Salesforce` you will need an OpenAI API key and Organizat
 2. Visit <https://platform.openai.com/account/api-keys> and generate a new key for this project. Keep it in a safe place, and don't put it in any repository.
 3. Visit <https://platform.openai.com/account/org-settings> and copy the Organization ID. You'll need this later.
 
-### Salesforce Setup
+### Salesforce Scratch Org Setup
 
-These scratch org instructions assume you don't already have a dev-hub org set up. If you do, you can skip the first two steps.
+These scratch org instructions assume you don't already have a `dev-hub` org set up. If you do, you can skip the first two steps.
 
 1. You need to have an Salesforce Developer Edition org or create a new one. This will be your `dev-hub` org. You can create a new one here: <https://developer.salesforce.com/signup>.
 1. Enable Dev Hub in your `dev-hub` org. See instructions here: <https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_enable_devhub.htm>.
@@ -108,12 +108,44 @@ Congratulations! You have completed the setup required to use the OpenAI API fro
 
 ## Using AI Gateway for Salesforce
 
-Once you have everything set up you can begin sending prompts to OpenAI. Navigate to the Prompts tab and click New to create a new prompt. Enter a name and title for the prompt and then select the model you want to use. 
+Once you have everything set up you can begin sending prompts to OpenAI. Navigate to the Prompt Engineering app from the main application menu. Click  Prompts tab and click New to create a new prompt. Enter a name and title for the prompt and then select the model you want to use.
+
+You can adjust the temperature setting to control the randomness of the response. The higher the temperature, the more random the response. The lower the temperature, the more predictable the response. The default temperature is 0.7, which is a good starting point.
 
 You should then enter a System Messaage and User Message. Here is the difference between the two:
 
 - **System Message**: This is the message that will be sent to OpenAI. It should be a short message that describes the context of the prompt. You might enter "I am a customer service agent. I am helping a customer with a problem." This message will be sent to OpenAI as the first part of the prompt and generally does not vary between prompts.
 - **User Message**: If you have a system message, the user message can be a short message with a request, or it could be a longer message that includes source material. For example, you could enter "Please summarize the sentiment and intent of the customer in this chat session." Then, when you execute this prompt you would paste in the chat session. The system message would be the same, but the user message would change depending on the chat session.
+
+### Using JSON Parameters
+
+Some example prompts use JSON parameters and handlebars notation to insert values into a prompt. For example, the `Market Research` sample prompt uses an extensive System Message to definine how to perform the market research and format the prompt.
+
+But, notice that the Prompt itself is parameterized with the handlebars format:
+
+```
+Create a market analysis for {marketName}.
+```
+
+And the Paremters field has the following:
+
+```json
+{ "marketName": "Full Market Name" }
+```
+
+When you execute this prompt, the system message will be sent to OpenAI with the parameters replaced with the values from the Parameters field. In this case, if you change "Full Market Name" to something like "Salesforce Devops" you will get a market analysis for Salesforce Devops.
+
+You can parameterize your own prompts by using the handlebars notation in the prompt and then defining the parameters in the Parameters field. The parameters must be valid JSON.
+
+The Parameters field is optional. If you don't need to parameterize your prompt, you can leave it blank. It is also not intended to be used to insert very large amounts of text. If you need to insert a large amount of text, you should use paste in the information into the Prompt field instead.
+
+``` 
+
+### Executing a Prompt
+
+Once you have created a prompt, you can execute it by clicking the `Next` button. This will send the prompt to OpenAI and you will have to wait for the response. It can take up to two minutes for a response.
+
+Once the response is received, it is stored in the `PromptAnswer__c` custom object and displayed on the screen. Click `Finish` to finish the Flow session.
 
 ## License
 
