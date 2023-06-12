@@ -128,7 +128,7 @@ The External Credential Principal is used to authenticate the external credentia
 4. Click on the users you want to add to the permission set.
 5. Click `Next`.
 
-Congratulations! You have completed the setup required to use the OpenAI API from within you Salesforce org, and your API key is safely stored in Salesforce. You are ready to start using the sample prompts.
+Congratulations! You have completed the setup required to use the OpenAI API from within your Salesforce org, and your API key is safely stored in Salesforce. You are ready to start using the sample prompts.
 
 ## Using AI Gateway for Salesforce
 
@@ -138,7 +138,7 @@ You can adjust the temperature setting to control the randomness of the response
 
 You should then enter a System Messaage and User Message. Here is the difference between the two:
 
-- **System Message**: This is the message that will be sent to OpenAI. It should be a short message that describes the context of the prompt. You might enter "I am a customer service agent. I am helping a customer with a problem." This message will be sent to OpenAI as the first part of the prompt and generally does not vary between prompts.
+- **System Message**: It should be a message of any length that describes the context of the prompt. You might enter "I am a customer service agent. I am helping a customer with a problem." The system message is automatically sent as the first part of the prompt and generally does not vary between prompts.
 - **User Message**: If you have a system message, the user message can be a short message with a request, or it could be a longer message that includes source material. For example, you could enter "Please summarize the sentiment and intent of the customer in this chat session." Then, when you execute this prompt you would paste in the chat session. The system message would be the same, but the user message would change depending on the chat session.
 
 ### Using JSON Parameters

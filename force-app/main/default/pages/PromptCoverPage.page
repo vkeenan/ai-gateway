@@ -116,7 +116,7 @@
         <li>Click on the users you want to add to the permission set.</li>
         <li>Click `Next`.</li>
       </ol>
-      <p style="font-size:1.5em;margin-bottom: 1em;">Congratulations! You have completed the setup required to use the OpenAI API from within you Salesforce org, and your
+      <p style="font-size:1.5em;margin-bottom: 1em;">Congratulations! You have completed the setup required to use the OpenAI API from within your Salesforce org, and your
         API key is safely stored in Salesforce. You are ready to start using the sample prompts.</p>
       <h2 style="font-size:3em; margin-bottom: 1em;">Using AI Gateway for Salesforce</h2>
       <p style="font-size:1.5em;margin-bottom: 1em;">
@@ -134,9 +134,9 @@
       </p>
       <ul style="font-size:1.5em;">
         <li>
-          <strong>System Message</strong>: This is the message that will be sent to OpenAI. It should be a short message that describes
-          the context of the prompt. You might enter "I am a customer service agent. I am helping a customer with a problem."
-          This message will be sent to OpenAI as the first part of the prompt and generally does not vary between prompts.</li>
+          <strong>System Message</strong>: It should be a message of any length that describes the context of the prompt. You might
+          enter "I am a customer service agent. I am helping a customer with a problem." The system message is automatically
+          sent as the first part of the prompt and generally does not vary between prompts</li>
         <li>
           <strong>User Message</strong>: If you have a system message, the user message can be a short message with a request, or
           it could be a longer message that includes source material. For example, you could enter "Please summarize the
@@ -160,7 +160,7 @@
       <p style="font-size:1.5em;margin-bottom: 1em;">
         And the Parameters field has the following:
         <br/>
-        <pre style="font-family:monospace;">{ "marketName": "Full Market Name" }</pre>
+        <code>{ "marketName": "Full Market Name" }</code>
       </p>
       <p style="font-size:1.5em;margin-bottom: 1em;">
         When you execute this prompt, the system message will be sent to OpenAI with the parameters replaced with the values from
