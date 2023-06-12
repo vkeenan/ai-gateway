@@ -14,8 +14,8 @@ public with sharing class PromptStatsController {
 	}
 
 	public PromptStatsController() {
-		totalPrompts = [SELECT count() FROM Prompt__c limit 1];
-		totalAnswers = [SELECT count() FROM PromptAnswer__c limit 1];
+		totalPrompts = Database.countQuery('SELECT count() FROM Prompt__c');
+		totalAnswers = Database.countQuery('SELECT count() FROM PromptAnswer__c');
 	}
 
 }

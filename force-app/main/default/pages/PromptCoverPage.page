@@ -1,5 +1,5 @@
 <apex:page controller="PromptStatsController">
-  <apex:sectionHeader title="Prompt Engineering: sf-prompts" />
+  <apex:sectionHeader title="AI Gateway for Salesforce: Share Your Zero-Shot Prompts" />
   <apex:pageBlock title="Project Statistics">
     <apex:pageBlockSection columns="2">
       <apex:pageBlockSectionItem>
@@ -13,18 +13,59 @@
     </apex:pageBlockSection>
   </apex:pageBlock>
 
-  <apex:pageBlock title="Welcome to the Prompt Engineering App">
+  <apex:pageBlock title="AI Gateway for Salesforce README.me">
     <apex:outputText>
       <h2 style="font-size:3em; margin-bottom: 1em;">Welcome!</h2>
       <p>
         <img style="margin-bottom: 1em;" src="https://salesforcedevops.net/wp-content/uploads/2023/06/SalesforceDevops.net_An_icon_that_is_robot_with_a_wrench_in_one_cd929c3e-0e77-46d6-817b-f53f34b73c99.jpg"
-          alt="Welcome image" height="256" width="265" />
+          alt="Welcome image" height="400" width="400" />
       </p>
       <p style="font-size:1.5em;margin-bottom: 1em;">We are glad you are here. The Prompt Engineering App enables you to interact with OpenAI API, create and store prompts,
         and receive AI-generated responses. Check the statistics above to see the current system usage. Happy prompting!
       </p>
+      <h2 style="font-size:3em; margin-bottom: 1em;">Project Description</h2>
+      <p style="font-size:1.5em;margin-bottom: 1em;">
+        `AI Gateway for Salesforce` is an open-source project for Salesforce customers that allows their admins and developers to
+        interact with OpenAI API. Utilizing a custom Salesforce object named `Prompt__c`, this project enables developers
+        and users to create and store prompts that are sent to the OpenAI chat completions API using the `gpt-4` and `gpt-3.5-turbo`
+        models. The response from the API is then stored in the `PromptAnswer__c` object. This repository serves as a foundational
+        tool for Salesforce customers interested in leveraging AI capabilities for B2B software and marketing applications.
+      </p>
+      <p style="font-size:1.5em;margin-bottom: 1em;">
+        `AI Gateway for Salesforce` is a bare-bones implementation of OpenAI API. It is intended to be a template for other organizations
+        to being experimenting with OpenAI API. The OpenAI user interface is written is a very simple Flow, so it should
+        be easy for admins and developers to customize the user interface to meet their needs.
+      </p>
+      <h2 style="font-size:3em;margin-bottom: 1em;">Privacy Considerations</h2>
+      <p style="font-size:1.5em;margin-bottom: 1em;">
+        You need to make your own decision whether to used OpenAI API because it requires sending data to the Open AI servers. However,
+        if you believe OpenAI's promises, then it should be safe. Here are some of the promises presented in the latest update
+        to their privacy policy:
+        <a href="https://openai.com/policies/privacy-policy">https://openai.com/policies/privacy-policy</a>.
+      </p>
+      <ol style="font-size:1.5em;">
+        <li>OpenAI will not use customer data submitted via the API to train or improve their models unless the customer explicitly
+          opts in to share their data for this purpose.</li>
+        <li>Data sent through the API will be retained for a maximum of 30 days for abuse and misuse monitoring purposes, after
+          which it will be deleted (unless required by law).</li>
+        <li>Unlike ChatGPT-4, where saved conversations are used to improve the model, the API does not save conversations.</li>
+      </ol>
+      <p style="font-size:1.5em;margin-bottom: 1em;">
+        Here is some more information from OpenAI: "By default, OpenAI does not use customer data submitted via the API to train
+        their models or improve their services. Data submitted for fine-tuning is only used to fine-tune the customer's model.
+        OpenAI retains API data for 30 days for abuse and misuse monitoring purposes, and a limited number of authorized
+        employees and third-party contractors can access this data solely for investigating and verifying suspected abuse.
+        Data submitted through the Files endpoint, such as for fine-tuning a model, is retained until the user deletes the
+        file."
+      </p>
+      <p style="font-size:1.5em;margin-bottom: 1em;">
+        Bottom line: according to these promises your data will not be saved and used for training. But, I would recommend that you
+        read the OpenAI privacy policy and make your own decision about whether you want to use this project in your own
+        org. As of Summer, 2023 we are still waiting for the OpenAI Business account to be available. I believe OpenAI will
+        be able to provide more assurances about data privacy once the Business account is available.
+      </p>
       <h2 style="font-size:3em;margin-bottom: 1em;">Getting Started</h2>
-      <p>&nbsp;</p>
+      <p style="font-size:1.5em;margin-bottom: 1em;">These are the post-intallation instructions for both unmanaged package and scratch org installation. </p>
       <h3 style="font-size:2em;margin-bottom: 1em;">Get OpenAPI Key and Org ID</h3>
       <ol style="font-size:1.5em;">
         <li>
@@ -37,27 +78,38 @@
           <a href="https://platform.openai.com/account/org-settings">Visit the Organization settings page</a> and copy the Organization ID. You'll need this later.</li>
       </ol>
 
-      <p style="font-size:1.5em;margin-bottom: 1em;">Once you have your API key and Organization ID, you can install the sf-prompts package and start using it.</p>
+      <p style="font-size:1.5em;margin-bottom: 1em;">Once you have your API key and Organization ID, you can install the `ai-gateway` package and start using it.</p>
 
-      <h3 style="font-size:2em;margin-bottom: 1em;">Edit Permission Set Mapping</h3>
+      <h3 style="font-size:2em;margin-bottom: 1em;">Add OpenAI Keys to External Credential</h3>
       <ol style="font-size:1.5em;">
-        <li>From the VS Code terminal, enter the command "make open" to go to the scratch org setup page.</li>
+        <li>From the VS Code terminal, enter the command `make open` to go to the scratch org setup page.</li>
         <li>Enter "named" in the Quick Find box and select Named Credentials.</li>
         <li>Click on the External Credentials tab.</li>
-        <li>Click on the OpenAI External Credential item to edit its details.</li>
-        <li>Click on down arrow in the Actions column next to Prompt Engineering and select Edit.</li>
+        <li>Click on the OpenAI item to edit its details.</li>
+        <li>In the `Principals` section, click on the down arrow in the `Actions` column next to `PromptEngineering` and select
+          Edit.
+        </li>
         <li>Click Add on Authentication Parameters.</li>
         <li>Under Parameter 1, enter "apiKey" for the Name.</li>
         <li>Enter the OpenAI API key you generated in the previous section for the Value.</li>
         <li>Click Add on Authentication Parameters to add your organization id as the second parameter.</li>
         <li>Under Parameter 2, enter "Org" for the Name and enter your Organization ID for the Value.</li>
-        <li>Click Save for Permission Set Mappings.</li>
-        <li>Close the Permission Set Mapping window and then refresh your page to avoid any Salesforce behavior anomolies.</li>
+        <li>Click Save for to update the external credentials Principals settings.</li>
       </ol>
-      <p style="font-size:1.5em;margin-bottom: 1em;">
-        Congratulations! You have completed the setup required to use the OpenAI API from within you Salesforce org, and your API
-        key is safely stored in Salesforce. You are ready to start using the sample prompts.
-      </p>
+
+      <h3 style="font-size:2em;margin-bottom: 1em;">Set Up Permissions for External Credential Principal</h3>
+      <p style="font-size:1.5em;margin-bottom: 1em;">The External Credential Principal is used to authenticate the external credential. You need to modify the `Prompt Engineering`
+        permission set to gain permission to use it.</p>
+      <ol style="font-size:1.5em;">
+        <li>In the Quick Find box, enter "permission" and select Permission Sets.</li>
+        <li>Click on the `Prompt Engineering` permission set.</li>
+        <li>Click on `External Credential Principal Access` on the right side of the screen.</li>
+        <li>Click Edit.</li>
+        <li>Select the `OpenAI - PromptEngineering` item and click Add.</li>
+        <li>Click Save.</li>
+      </ol>
+      <p style="font-size:1.5em;margin-bottom: 1em;">Congratulations! You have completed the setup required to use the OpenAI API from within you Salesforce org, and your
+        API key is safely stored in Salesforce. You are ready to start using the sample prompts.</p>
     </apex:outputText>
   </apex:pageBlock>
 

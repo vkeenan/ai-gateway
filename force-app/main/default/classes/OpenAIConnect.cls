@@ -61,7 +61,7 @@
 
  */
 public class OpenAIConnect {
-	private static final Decimal DEFAULT_TEMPERATURE = 0.1;
+	private static final Decimal DEFAULT_TEMPERATURE = 0.7;
 	private static final Integer DEFAULT_TOKENS = 1700;
 	private static final String DEFAULT_SYSTEMPROMPT = 'You are a helpful assistant.';
 	private static final String DEFAULT_MODEL = 'gpt-3.5-turbo';

@@ -294,7 +294,7 @@
             <defaultValue>
                 <elementReference>PromptRecord.Temperature__c</elementReference>
             </defaultValue>
-            <fieldText>Temperature (aka Creativity, default = 0.1, up to 1.0 for max)</fieldText>
+            <fieldText>Temperature (aka Creativity, default = 0.7, up to 1.0 for max)</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>false</isRequired>
             <scale>2</scale>
@@ -338,6 +338,7 @@
             <fieldType>LargeTextArea</fieldType>
             <isRequired>false</isRequired>
         </fields>
+        <nextOrFinishButtonLabel>Execute</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>

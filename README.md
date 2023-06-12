@@ -2,11 +2,13 @@
 
 `AI Gateway for Salesforce` allows Salesforce customers to generate text with OpenAI API directly within Salesforce. The prompts and answers are stored in Salesforce custom objects. A remarkably powerful tool, `AI Gateway for Salesforce` allows small teams to begin experimenting with zero-shot prompt engineering in everyday productivity tasks.
 
-The project is available as an unmanaged package on the Salesforce AppExchange: <https://appexchange.salesforce.com/appxListingDetail?listingId=xxx>
+The project is available as an unmanaged package on the Salesforce AppExchange: <https://login.salesforce.com/packaging/installPackage.apexp?p0=04tHs0000011h4T>
 
 You can also use this repository to deploy the project to a Salesforce scratch org for testing and development.
 
 ![Robot with a Wrench and a Brush](images/SalesforceDevops.net_An_icon_that_is_robot_with_a_wrench.png)
+
+[![GitHub release](https://img.shields.io/github/release/vkeenan/sf-prompts.svg)]
 
 ## Project Description
 
@@ -37,7 +39,8 @@ Bottom line: according to these promises your data will not be saved and used fo
     - [OpenAI Setup](#openai-setup)
       - [Get OpenAI API Key and Organization ID](#get-openai-api-key-and-organization-id)
     - [Salesforce Scratch Org Setup](#salesforce-scratch-org-setup)
-      - [Edit Permission Set Mapping](#edit-permission-set-mapping)
+      - [Add OpenAI Keys to External Credential](#add-openai-keys-to-external-credential)
+      - [Set Up Permissions for External Credential Principal](#set-up-permissions-for-external-credential-principal)
   - [Using AI Gateway for Salesforce](#using-ai-gateway-for-salesforce)
     - [Using JSON Parameters](#using-json-parameters)
     - [Executing a Prompt](#executing-a-prompt)
@@ -90,19 +93,30 @@ These scratch org instructions assume you don't already have a `dev-hub` org set
 1. Open a terminal window in VS Code (Ctrl+Shift+`).
 1. Enter the command `make build` to create the scratch org and load the sample prompts.
 
-#### Edit Permission Set Mapping
+#### Add OpenAI Keys to External Credential
 
 1. From the VS Code terminal, enter the command `make open` to go to the scratch org setup page.
 2. Enter "named" in the Quick Find box and select Named Credentials.
 3. Click on the External Credentials tab.
 4. Click on the OpenAI item to edit its details.
-5. Click on down arrow in the Actions column next to `PromptEngineering` and select Edit.
+5. In the `Principals` section, click on the down arrow in the `Actions` column next to `PromptEngineering` and select Edit.
 6. Click Add on Authentication Parameters.
 7. Under Parameter 1, enter "apiKey" for the Name.
 8. Enter the OpenAI API key you generated in the previous section for the Value.
 9. Click Add on Authentication Parameters to add your organization id as the second parameter.
 10. Under Parameter 2, enter "Org" for the Name and enter your Organization ID for the Value.
-11. Click Save for Permission Set Mappings.
+11. Click Save for to update the external credentials Principals settings.
+
+#### Set Up Permissions for External Credential Principal
+
+The External Credential Principal is used to authenticate the external credential. You need to modify the `Prompt Engineering` permission set to gain permission to use it.
+
+1. In the Quick Find box, enter "permission" and select Permission Sets.
+2. Click on the `Prompt Engineering` permission set.
+3. Click on `External Credential Principal Access` on the right side of the screen.
+4. Click Edit.
+5. Select the `OpenAI - PromptEngineering` item and click Add.
+6. Click Save.
 
 Congratulations! You have completed the setup required to use the OpenAI API from within you Salesforce org, and your API key is safely stored in Salesforce. You are ready to start using the sample prompts.
 
@@ -139,13 +153,12 @@ You can parameterize your own prompts by using the handlebars notation in the pr
 
 The Parameters field is optional. If you don't need to parameterize your prompt, you can leave it blank. It is also not intended to be used to insert very large amounts of text. If you need to insert a large amount of text, you should use paste in the information into the Prompt field instead.
 
-``` 
 
 ### Executing a Prompt
 
-Once you have created a prompt, you can execute it by clicking the `Next` button. This will send the prompt to OpenAI and you will have to wait for the response. It can take up to two minutes for a response.
+Once you have created a prompt, you can execute it by clicking the `Execute` button. This will send the prompt to OpenAI and you will have to wait for the response. It can take up to two minutes for a response.
 
-Once the response is received, it is stored in the `PromptAnswer__c` custom object and displayed on the screen. Click `Finish` to finish the Flow session.
+Once the response is received, it is stored in the `PromptAnswer__c` custom object and displayed in the answer screen. Click `Finish` to finish the Flow session.
 
 ## License
 
