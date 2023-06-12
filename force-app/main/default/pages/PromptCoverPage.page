@@ -108,8 +108,129 @@
         <li>Select the `OpenAI - PromptEngineering` item and click Add.</li>
         <li>Click Save.</li>
       </ol>
+      <h3 style="font-size:2em;margin-bottom: 1em;">Add Users to Prompt Engineering Permission Set</h3>
+      <ol style="font-size:1.5em;">
+        <li>Remain in the `Prompt Engineering` Permission Sets screen from the previous section.</li>
+        <li>Click on `Manage Assignments`.</li>
+        <li>Click `Add Assignments`.</li>
+        <li>Click on the users you want to add to the permission set.</li>
+        <li>Click `Next`.</li>
+      </ol>
       <p style="font-size:1.5em;margin-bottom: 1em;">Congratulations! You have completed the setup required to use the OpenAI API from within you Salesforce org, and your
         API key is safely stored in Salesforce. You are ready to start using the sample prompts.</p>
+      <h2 style="font-size:3em; margin-bottom: 1em;">Using AI Gateway for Salesforce</h2>
+      <p style="font-size:1.5em;margin-bottom: 1em;">
+        Once you have everything set up you can begin sending prompts to OpenAI. Navigate to the Prompt Engineering app from the
+        main application menu. Click Prompts tab and click New to create a new prompt. Enter a name and title for the prompt
+        and then select the model you want to use.
+      </p>
+      <p style="font-size:1.5em;margin-bottom: 1em;">
+        You can adjust the temperature setting to control the randomness of the response. The higher the temperature, the more random
+        the response. The lower the temperature, the more predictable the response. The default temperature is 0.7, which
+        is a good starting point.
+      </p>
+      <p style="font-size:1.5em;margin-bottom: 1em;">
+        You should then enter a System Message and User Message. Here is the difference between the two:
+      </p>
+      <ul style="font-size:1.5em;">
+        <li>
+          <strong>System Message</strong>: This is the message that will be sent to OpenAI. It should be a short message that describes
+          the context of the prompt. You might enter "I am a customer service agent. I am helping a customer with a problem."
+          This message will be sent to OpenAI as the first part of the prompt and generally does not vary between prompts.</li>
+        <li>
+          <strong>User Message</strong>: If you have a system message, the user message can be a short message with a request, or
+          it could be a longer message that includes source material. For example, you could enter "Please summarize the
+          sentiment and intent of the customer in this chat session." Then, when you execute this prompt you would paste
+          in the chat session. The system message would be the same, but the user message would change depending on the chat
+          session.
+        </li>
+      </ul>
+
+      <h3 style="font-size:2em;margin-bottom: 1em;">Using JSON Parameters</h3>
+      <p style="font-size:1.5em;margin-bottom: 1em;">
+        Some example prompts use JSON parameters and handlebars notation to insert values into a prompt. For example, the `Market
+        Research` sample prompt uses an extensive System Message to define how to perform the market research and format
+        the prompt.
+      </p>
+      <p style="font-size:1.5em;margin-bottom: 1em;">
+        But, notice that the Prompt itself is parameterized with the handlebars format:
+        <br/>
+        <code>Create a market analysis for {marketName}.</code>
+      </p>
+      <p style="font-size:1.5em;margin-bottom: 1em;">
+        And the Parameters field has the following:
+        <br/>
+        <pre style="font-family:monospace;">{ "marketName": "Full Market Name" }</pre>
+      </p>
+      <p style="font-size:1.5em;margin-bottom: 1em;">
+        When you execute this prompt, the system message will be sent to OpenAI with the parameters replaced with the values from
+        the Parameters field. In this case, if you change "Full Market Name" to something like "Salesforce Devops" you will
+        get a market analysis for Salesforce Devops.
+      </p>
+      <p style="font-size:1.5em;margin-bottom: 1em;">
+        You can parameterize your own prompts by using the handlebars notation in the prompt and then defining the parameters in
+        the Parameters field. The parameters must be valid JSON.
+      </p>
+      <p style="font-size:1.5em;margin-bottom: 1em;">
+        The Parameters field is optional. If you don't need to parameterize your prompt, you can leave it blank. It is also not intended
+        to be used to insert very large amounts of text. If you need to insert a large amount of text, you should paste in
+        the information into the Prompt field instead.
+      </p>
+      <h3 style="font-size:2em;margin-bottom: 1em;">Executing a Prompt</h3>
+      <p style="font-size:1.5em;margin-bottom: 1em;">
+        Once you have created a prompt, you can execute it by clicking the `Execute` button. This will send the prompt to OpenAI
+        and you will have to wait for the response. It can take up to two minutes for a response.
+      </p>
+      <p style="font-size:1.5em;margin-bottom: 1em;">
+        Once the response is received, it is stored in the `PromptAnswer__c` custom object and displayed in the answer screen. Click
+        `Finish` to finish the Flow session.
+      </p>
+
+      <h2 style="font-size:3em;margin-bottom: 1em;">License</h2>
+      <p style="font-size:1.5em;margin-bottom: 1em;">
+        This project is licensed under the terms of the MIT license.
+      </p>
+
+      <h2 style="font-size:3em;margin-bottom: 1em;">Project Contact Information</h2>
+      <p style="font-size:1.5em;margin-bottom: 1em;">
+        For any inquiries about the project, please reach out to me at
+        <a href="mailto:vern@salesforcedevops.net">vern@salesforcedevops.net</a> or
+        <a href="https://linkedin.com/in/vernonkeenan">https://linkedin.com/in/vernonkeenan</a>.
+      </p>
+
+      <h2 style="font-size:3em;margin-bottom: 1em;">Project Acknowledgements</h2>
+      <p style="font-size:1.5em;margin-bottom: 1em;">
+        We would like to thank the following for their contributions and support:
+      </p>
+      <ul style="font-size:1.5em;">
+        <li>Salesforce Community: For their continued support and usage of the project.</li>
+        <li>OpenAI: For providing the API used in this project.</li>
+        <li>
+          <a href="https://unofficialsf.com/tap-into-the-power-of-chatgpt-via-flow/">From Andre Tawalbeh: Tap into the Power of ChatGPT via Flow</a>
+        </li>
+      </ul>
+
+      <h2 style="font-size:3em;margin-bottom: 1em;">Project Credits</h2>
+      <p style="font-size:1.5em;margin-bottom: 1em;">
+        Project Lead:
+        <a href="mailto:vern@salesforcedevops.net">Vernon Keenan</a>
+        <br/>
+      </p>
+
+      <h2 style="font-size:3em;margin-bottom: 1em;">Project Sponsors</h2>
+      <p style="font-size:1.5em;margin-bottom: 1em;">
+        We are currently looking for sponsors. If you are interested in sponsoring this project, please contact us.
+      </p>
+
+      <h2 style="font-size:3em;margin-bottom: 1em;">Project References</h2>
+      <ul style="font-size:1.5em;">
+        <li>
+          <a href="https://developer.salesforce.com/docs/">Salesforce Developer Documentation</a>
+        </li>
+        <li>
+          <a href="https://platform.openai.com/docs/">OpenAI API Documentation</a>
+        </li>
+      </ul>
     </apex:outputText>
   </apex:pageBlock>
 

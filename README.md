@@ -43,13 +43,13 @@ Bottom line: according to these promises your data will not be saved and used fo
     - [Salesforce Scratch Org Setup](#salesforce-scratch-org-setup)
       - [Add OpenAI Keys to External Credential](#add-openai-keys-to-external-credential)
       - [Set Up Permissions for External Credential Principal](#set-up-permissions-for-external-credential-principal)
+      - [Add Users to Prompt Engineering Permission Set](#add-users-to-prompt-engineering-permission-set)
   - [Using AI Gateway for Salesforce](#using-ai-gateway-for-salesforce)
     - [Using JSON Parameters](#using-json-parameters)
     - [Executing a Prompt](#executing-a-prompt)
   - [License](#license)
   - [Project Contact Information](#project-contact-information)
   - [Project Acknowledgements](#project-acknowledgements)
-  - [Project History](#project-history)
   - [Project Credits](#project-credits)
   - [Project Sponsors](#project-sponsors)
   - [Project References](#project-references)
@@ -120,6 +120,14 @@ The External Credential Principal is used to authenticate the external credentia
 5. Select the `OpenAI - PromptEngineering` item and click Add.
 6. Click Save.
 
+#### Add Users to Prompt Engineering Permission Set
+
+1. Remain in the `Prompt Engineering` Permission Sets screen from the previous section.
+2. Click on `Manage Assignments`.
+3. Click `Add Assignments`.
+4. Click on the users you want to add to the permission set.
+5. Click `Next`.
+
 Congratulations! You have completed the setup required to use the OpenAI API from within you Salesforce org, and your API key is safely stored in Salesforce. You are ready to start using the sample prompts.
 
 ## Using AI Gateway for Salesforce
@@ -155,7 +163,6 @@ You can parameterize your own prompts by using the handlebars notation in the pr
 
 The Parameters field is optional. If you don't need to parameterize your prompt, you can leave it blank. It is also not intended to be used to insert very large amounts of text. If you need to insert a large amount of text, you should use paste in the information into the Prompt field instead.
 
-
 ### Executing a Prompt
 
 Once you have created a prompt, you can execute it by clicking the `Execute` button. This will send the prompt to OpenAI and you will have to wait for the response. It can take up to two minutes for a response.
@@ -178,14 +185,9 @@ We would like to thank the following for their contributions and support:
 - OpenAI: For providing the API used in this project.
 - [From Andre Tawalbeh: Tap into the Power of ChatGPT via Flow](https://unofficialsf.com/tap-into-the-power-of-chatgpt-via-flow/)
 
-## Project History
-
-The AI Gateway for Salesforce project was conceived with the aim of harnessing the power of OpenAI in the Salesforce ecosystem. It started as a small, internal project, but quickly grew as more Salesforce customers expressed interest in AI capabilities. The project was made open source to foster innovation and expand its potential applications within the community.
-
 ## Project Credits
 
-- Project Lead: [Your Name](mailto:you@example.com)
-- Core Contributors: (List of core contributors)
+- Project Lead: [Vernon Keenan](mailto:vern@salesforcedevops.net)
 
 ## Project Sponsors
 
