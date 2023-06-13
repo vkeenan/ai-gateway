@@ -4,7 +4,7 @@
 
 `AI Gateway for Salesforce` allows Salesforce customers to generate text with OpenAI API directly within Salesforce. The prompts and answers are stored in Salesforce custom objects. A remarkably powerful tool, `AI Gateway for Salesforce` allows small teams to begin experimenting with zero-shot prompt engineering in everyday productivity tasks.
 
-The project is available as an unmanaged package on the Salesforce AppExchange: <https://login.salesforce.com/packaging/installPackage.apexp?p0=04tHs0000011h4T>
+The project is available as an unmanaged package on the Salesforce AppExchange: <https://login.salesforce.com/packaging/installPackage.apexp?p0=04tHs0000011h8l>
 
 You can also use this repository to deploy the project to a Salesforce scratch org for testing and development.
 

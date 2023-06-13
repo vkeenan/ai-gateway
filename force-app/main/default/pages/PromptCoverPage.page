@@ -37,6 +37,7 @@
         be easy for admins and developers to customize the user interface to meet their needs.
       </p>
       <h2 style="font-size:3em;margin-bottom: 1em;">Privacy Considerations</h2>
+      <p>&nbsp;</p>
       <h3 style="font-size:2em;margin-bottom: 1em;">Personal Identifiable Information</h3>
       <p style="font-size:1.5em;margin-bottom: 1em;">
         Please make sure that you do not store any personal identifiable information (PII) in the `Prompt__c` object. The `Prompt__c`
@@ -204,7 +205,6 @@
         <a href="mailto:vern@salesforcedevops.net">vern@salesforcedevops.net</a> or
         <a href="https://linkedin.com/in/vernonkeenan">https://linkedin.com/in/vernonkeenan</a>.
       </p>
-
       <h2 style="font-size:3em;margin-bottom: 1em;">Project Acknowledgements</h2>
       <p style="font-size:1.5em;margin-bottom: 1em;">
         We would like to thank the following for their contributions and support:
@@ -216,19 +216,12 @@
           <a href="https://unofficialsf.com/tap-into-the-power-of-chatgpt-via-flow/">From Andre Tawalbeh: Tap into the Power of ChatGPT via Flow</a>
         </li>
       </ul>
-
       <h2 style="font-size:3em;margin-bottom: 1em;">Project Credits</h2>
       <p style="font-size:1.5em;margin-bottom: 1em;">
         Project Lead:
         <a href="mailto:vern@salesforcedevops.net">Vernon Keenan</a>
         <br/>
       </p>
-
-      <h2 style="font-size:3em;margin-bottom: 1em;">Project Sponsors</h2>
-      <p style="font-size:1.5em;margin-bottom: 1em;">
-        We are currently looking for sponsors. If you are interested in sponsoring this project, please contact us.
-      </p>
-
       <h2 style="font-size:3em;margin-bottom: 1em;">Project References</h2>
       <ul style="font-size:1.5em;">
         <li>
