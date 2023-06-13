@@ -2,15 +2,11 @@
 
 ![GitHub release](https://img.shields.io/github/release/vkeenan/sf-prompts.svg)
 
-
 `AI Gateway for Salesforce` allows Salesforce customers to generate text with OpenAI API directly within Salesforce. The prompts and answers are stored in Salesforce custom objects. A remarkably powerful tool, `AI Gateway for Salesforce` allows small teams to begin experimenting with zero-shot prompt engineering in everyday productivity tasks.
 
 The project is available as an unmanaged package on the Salesforce AppExchange: <https://login.salesforce.com/packaging/installPackage.apexp?p0=04tHs0000011h4T>
 
 You can also use this repository to deploy the project to a Salesforce scratch org for testing and development.
-
-![Robot with a Wrench and a Brush](images/SalesforceDevops.net_An_icon_that_is_robot_with_a_wrench.png)
-
 
 ## Project Description
 
@@ -18,24 +14,16 @@ You can also use this repository to deploy the project to a Salesforce scratch o
 
 `AI Gateway for Salesforce` is a bare-bones implementation of OpenAI API. It is intended to be a template for other organizations to being experimenting with OpenAI API. The OpenAI user interface is written is a very simple Flow, so it should be easy for admins and developers to customize the user interface to meet their needs.
 
-## Privacy Considerations
-
-You need to make your own decision whether to used OpenAI API because it requires sending data to the Open AI servers. However, if you believe OpenAI's promises, then it should be safe. Here are some of the promises presented in the latest update to their privacy policy: <https://openai.com/policies/privacy-policy>.
-
-1. OpenAI will not use customer data submitted via the API to train or improve their models unless the customer explicitly opts in to share their data for this purpose.
-2. Data sent through the API will be retained for a maximum of 30 days for abuse and misuse monitoring purposes, after which it will be deleted (unless required by law).
-3. Unlike ChatGPT-4, where saved conversations are used to improve the model, the API does not save conversations.
-
-Here is some more information from OpenAI: "By default, OpenAI does not use customer data submitted via the API to train their models or improve their services. Data submitted for fine-tuning is only used to fine-tune the customer's model. OpenAI retains API data for 30 days for abuse and misuse monitoring purposes, and a limited number of authorized employees and third-party contractors can access this data solely for investigating and verifying suspected abuse. Data submitted through the Files endpoint, such as for fine-tuning a model, is retained until the user deletes the file."
-
-Bottom line: according to these promises your data will not be saved and used for training. But, I would recommend that you read the OpenAI privacy policy and make your own decision about whether you want to use this project in your own org. As of Summer, 2023 we are still waiting for the OpenAI Business account to be available. I believe OpenAI will be able to provide more assurances about data privacy once the Business account is available.
+![Robot with a Wrench and a Brush](images/SalesforceDevops.net_An_icon_that_is_robot_with_a_wrench.png)
 
 ## Table of Contents
 
 - [AI Gateway for Salesforce](#ai-gateway-for-salesforce)
   - [Project Description](#project-description)
-  - [Privacy Considerations](#privacy-considerations)
   - [Table of Contents](#table-of-contents)
+  - [Privacy Considerations](#privacy-considerations)
+    - [Personal Identifiable Information](#personal-identifiable-information)
+    - [Cloud Service Provider](#cloud-service-provider)
   - [Unmanaged Package Post-Installation Notes](#unmanaged-package-post-installation-notes)
   - [Local Project Setup](#local-project-setup)
     - [OpenAI Setup](#openai-setup)
@@ -53,6 +41,24 @@ Bottom line: according to these promises your data will not be saved and used fo
   - [Project Credits](#project-credits)
   - [Project Sponsors](#project-sponsors)
   - [Project References](#project-references)
+
+## Privacy Considerations
+
+### Personal Identifiable Information
+
+Please make sure that you do not store any personal identifiable information (PII) in the `Prompt__c` object. The `Prompt__c` object is not encrypted, so any PII stored in this object will be visible to anyone with access to the object. The `PromptAnswer__c` object is also not encrypted, so it is safe to store PII in this object as well.
+
+### Cloud Service Provider
+
+You need to make your own decision whether to used OpenAI API because it requires sending data to the Open AI servers. However, if you believe OpenAI's promises, then it should be safe. Here are some of the promises presented in the latest update to their privacy policy: <https://openai.com/policies/privacy-policy>.
+
+1. OpenAI will not use customer data submitted via the API to train or improve their models unless the customer explicitly opts in to share their data for this purpose.
+2. Data sent through the API will be retained for a maximum of 30 days for abuse and misuse monitoring purposes, after which it will be deleted (unless required by law).
+3. Unlike ChatGPT-4, where saved conversations are used to improve the model, the API does not save conversations.
+
+Here is some more information from OpenAI: "By default, OpenAI does not use customer data submitted via the API to train their models or improve their services. Data submitted for fine-tuning is only used to fine-tune the customer's model. OpenAI retains API data for 30 days for abuse and misuse monitoring purposes, and a limited number of authorized employees and third-party contractors can access this data solely for investigating and verifying suspected abuse. Data submitted through the Files endpoint, such as for fine-tuning a model, is retained until the user deletes the file."
+
+Bottom line: according to these promises your data will not be saved and used for training. But, I would recommend that you read the OpenAI privacy policy and make your own decision about whether you want to use this project in your own org. As of Summer, 2023 we are still waiting for the OpenAI Business account to be available. I believe OpenAI will be able to provide more assurances about data privacy once the Business account is available.
 
 ## Unmanaged Package Post-Installation Notes
 
@@ -147,7 +153,7 @@ Some example prompts use JSON parameters and handlebars notation to insert value
 
 But, notice that the Prompt itself is parameterized with the handlebars format:
 
-```
+```text
 Create a market analysis for {marketName}.
 ```
 

@@ -37,6 +37,13 @@
         be easy for admins and developers to customize the user interface to meet their needs.
       </p>
       <h2 style="font-size:3em;margin-bottom: 1em;">Privacy Considerations</h2>
+      <h3 style="font-size:2em;margin-bottom: 1em;">Personal Identifiable Information</h3>
+      <p style="font-size:1.5em;margin-bottom: 1em;">
+        Please make sure that you do not store any personal identifiable information (PII) in the `Prompt__c` object. The `Prompt__c`
+        object is not encrypted, so any PII stored in this object will be visible to anyone with access to the object. The
+        `PromptAnswer__c` object is also not encrypted, so it is safe to store PII in this object as well.
+      </p>
+      <h3 style="font-size:2em;margin-bottom: 1em;">Cloud Service Provider</h3>
       <p style="font-size:1.5em;margin-bottom: 1em;">
         You need to make your own decision whether to used OpenAI API because it requires sending data to the Open AI servers. However,
         if you believe OpenAI's promises, then it should be safe. Here are some of the promises presented in the latest update
