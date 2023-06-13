@@ -46,7 +46,7 @@ You can also use this repository to deploy the project to a Salesforce scratch o
 
 ### Personal Identifiable Information
 
-Please make sure that you do not store any personal identifiable information (PII) in the `Prompt__c` object. The `Prompt__c` object is not encrypted, so any PII stored in this object will be visible to anyone with access to the object. The `PromptAnswer__c` object is also not encrypted, so it is safe to store PII in this object as well.
+Please make sure that you do not store any personal identifiable information (PII) in the `Prompt__c` object. The `Prompt__c` object is not encrypted, so any PII stored in this object will be visible to anyone with access to the object. The `PromptAnswer__c` object is also not encrypted, so it is not safe to store PII in this object as well.
 
 ### Cloud Service Provider
 
