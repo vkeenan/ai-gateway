@@ -33,8 +33,8 @@
       </p>
       <p style="font-size:1.5em;margin-bottom: 1em;">
         `AI Gateway for Salesforce` is a bare-bones implementation of OpenAI API. It is intended to be a template for other organizations
-        to being experimenting with OpenAI API. The OpenAI user interface is written is a very simple Flow, so it should
-        be easy for admins and developers to customize the user interface to meet their needs.
+        to experiment with OpenAI API. The OpenAI user interface is written as a very simple Flow, so it should be easy for
+        admins and developers to customize the user interface to meet their needs.
       </p>
       <h2 style="font-size:3em;margin-bottom: 1em;">Privacy Considerations</h2>
       <p>&nbsp;</p>

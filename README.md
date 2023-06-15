@@ -12,7 +12,7 @@ You can also use this repository to deploy the project to a Salesforce scratch o
 
 `AI Gateway for Salesforce` is an open-source project for Salesforce customers that allows their admins and developers to interact with OpenAI API. Utilizing a custom Salesforce object named `Prompt__c`, this project enables developers and users to create and store prompts that are sent to the OpenAI chat completions API using the `gpt-4` and `gpt-3.5-turbo` models. The response from the API is then stored in the `PromptAnswer__c` object. This repository serves as a foundational tool for Salesforce customers interested in leveraging AI capabilities for B2B software and marketing applications.
 
-`AI Gateway for Salesforce` is a bare-bones implementation of OpenAI API. It is intended to be a template for other organizations to being experimenting with OpenAI API. The OpenAI user interface is written is a very simple Flow, so it should be easy for admins and developers to customize the user interface to meet their needs.
+`AI Gateway for Salesforce` is a bare-bones implementation of OpenAI API. It is intended to be a template for other organizations to experiment with OpenAI API. The OpenAI user interface is written as a very simple Flow, so it should be easy for admins and developers to customize the user interface to meet their needs.
 
 ![Robot with a Wrench and a Brush](images/SalesforceDevops.net_An_icon_that_is_robot_with_a_wrench.png)
 
@@ -50,7 +50,7 @@ Please make sure that you do not store any personal identifiable information (PI
 
 ### Cloud Service Provider
 
-You need to make your own decision whether to used OpenAI API because it requires sending data to the Open AI servers. However, if you believe OpenAI's promises, then it should be safe. Here are some of the promises presented in the latest update to their privacy policy: <https://openai.com/policies/privacy-policy>.
+You need to make your own decision whether to used OpenAI API because it requires sending data to the Open AI servers. However, if you believe OpenAI's promises, then it should be safe. Here are some of the promises presented in the latest update to their [privacy policy](https://openai.com/policies/privacy-policy) and [API data usage policies](https://openai.com/policies/api-data-usage-policies).
 
 1. OpenAI will not use customer data submitted via the API to train or improve their models unless the customer explicitly opts in to share their data for this purpose.
 2. Data sent through the API will be retained for a maximum of 30 days for abuse and misuse monitoring purposes, after which it will be deleted (unless required by law).
