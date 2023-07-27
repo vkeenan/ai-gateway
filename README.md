@@ -6,7 +6,7 @@ Unleash limitless possibilities with our `AI Gateway for Salesforce`, an intuiti
 
 For detailed insight on how `AI Gateway for Salesforce` works, please refer to our blog post: [Introducing AI Gateway for Salesforce: Managed Access for OpenAI API](https://salesforcedevops.net/index.php/2023/06/15/introducing-ai-gateway-for-salesforce/).
 
-To install the project, visit Salesforce AppExchange: <https://login.salesforce.com/packaging/installPackage.apexp?p0=04tHs0000011h8l>. You can also leverage this repository for deploying the project to a Salesforce scratch org for testing and development.
+To install the project, visit Salesforce AppExchange: <https://login.salesforce.com/packaging/installPackage.apexp?p0=04tHs0000011i4j>. You can also leverage this repository for deploying the project to a Salesforce scratch org for testing and development.
 
 ## Project Description
 
