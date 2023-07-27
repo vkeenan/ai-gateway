@@ -18,6 +18,11 @@
                 <label>gpt-3.5-turbo</label>
             </value>
             <value>
+                <fullName>gpt-3.5-turbo-16k</fullName>
+                <default>false</default>
+                <label>gpt-3.5-turbo-16k</label>
+            </value>
+            <value>
                 <fullName>gpt-4</fullName>
                 <default>false</default>
                 <label>gpt-4</label>

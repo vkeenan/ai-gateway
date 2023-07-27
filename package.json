@@ -1,8 +1,13 @@
 {
   "name": "sf-prompts",
   "private": true,
-  "version": "0.1.0",
-  "description": "Salesforce App",
+  "version": "1.7",
+  "description": "AI Gateway for Salesforce",
+  "author": {
+    "name": "Vernon Keenan",
+    "url": "https://salesforcedevops.net",
+    "email": "vern@salesforcedevops.net"
+  },
   "scripts": {
     "lint": "eslint **/{aura,lwc}/**",
     "test": "npm run test:unit",

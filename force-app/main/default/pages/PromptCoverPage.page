@@ -20,44 +20,123 @@
         <img style="margin-bottom: 1em;" src="https://salesforcedevops.net/wp-content/uploads/2023/06/SalesforceDevops.net_An_icon_that_is_robot_with_a_wrench_in_one_cd929c3e-0e77-46d6-817b-f53f34b73c99.jpg"
           alt="Welcome image" height="400" width="400" />
       </p>
-      <p style="font-size:1.5em;margin-bottom: 1em;">We are glad you are here. The Prompt Engineering App enables you to interact with OpenAI API, create and store prompts,
-        and receive AI-generated responses. Check the statistics above to see the current system usage. Happy prompting!
+      <p style="font-size:1.5em;margin-bottom: 1em;">We are glad you are here!</p>
+      <p style="font-size:1.5em;margin-bottom: 1em;">The Prompt Engineering App enables you to interact with OpenAI API, create and store prompts, and receive AI-generated
+        responses. Check the statistics above to see the current system usage. Happy prompting!
       </p>
-      <h2 style="font-size:3em; margin-bottom: 1em;">Project Description</h2>
+      <hr />
       <p style="font-size:1.5em;margin-bottom: 1em;">
-        `AI Gateway for Salesforce` is an open-source project for Salesforce customers that allows their admins and developers to
-        interact with OpenAI API. Utilizing a custom Salesforce object named `Prompt__c`, this project enables developers
-        and users to create and store prompts that are sent to the OpenAI chat completions API using the `gpt-4` and `gpt-3.5-turbo`
-        models. The response from the API is then stored in the `PromptAnswer__c` object. This repository serves as a foundational
-        tool for Salesforce customers interested in leveraging AI capabilities for B2B software and marketing applications.
+        Unleash limitless possibilities with our
+        <strong>AI Gateway for Salesforce</strong>, an intuitive Prompt Engineering Platform tailored especially for Salesforce teams.
+        This platform empowers you to create, test, and launch AI prompts within a highly-secured shared repository. The
+        content and responses of these prompts are encapsulated within Salesforce custom objects. With
+        <strong>AI Gateway for Salesforce</strong>, you can leverage parameterized zero-shot prompt engineering to transform your
+        mundane productivity tasks into high-impact efficiencies.
+      </p>
+
+      <p style="font-size:1.5em;margin-bottom: 1em;">
+        For detailed insight on how
+        <strong>AI Gateway for Salesforce</strong> works, please refer to our blog post:
+        <a href="https://salesforcedevops.net/index.php/2023/06/15/introducing-ai-gateway-for-salesforce/">Introducing AI Gateway for Salesforce: Managed Access for OpenAI API</a>.
+      </p>
+
+      <h2 style="font-size:2em;margin-bottom: 1em;">Project Description</h2>
+
+      <p style="font-size:1.5em;margin-bottom: 1em;">
+        <strong>AI Gateway for Salesforce</strong> is a novel, open-source solution that enables Salesforce users to employ the OpenAI
+        API. This tool has been designed with a custom Salesforce object named
+        <code>Prompt__c</code>, thereby allowing developers and users to store prompts that can be sent to OpenAI chat completions API using models
+        like
+        <code>gpt-4</code> and
+        <code>gpt-3.5-turbo</code>. The responses stored securely in
+        <code>PromptAnswer__c</code> object can later be retrieved.
+      </p>
+
+      <p style="font-size:1.5em;margin-bottom: 1em;">
+        This project presents a minimalist implementation of OpenAI API, serving as a template for organizations to try OpenAI API.
+        The user interface is ingeniously crafted into a simple Flow that administrators and developers can easily modify
+        to ensure customization as per the needs of your organization.
+      </p>
+      <h2 style="font-size:3em; margin-bottom: 1em;">Project Architecture</h2>
+      <p style="font-size:1.5em;margin-bottom: 1em;">
+        AI Gateway for Salesforce was inspired by the idea "wouldn't it be great if I could share this prompt?" What evolved was
+        a simple solution that allows you to create prompts and share them with other users, but has all the security and
+        safety of Salesforce.
+      </p>
+      <p style="font-size:1.5em;margin-bottom: 1em;">The workflow is envisioned as follows:</p>
+      <p>
+        <img width="800" src="https://salesforcedevops.net/wp-content/uploads/2023/07/AI-Gateway-Architecture.png" alt="AI Gateway for Salesforce Architecture"
+        />
+      </p>
+      <p style="font-size:1.5em;margin-bottom: 1em;">Here's a description of that workflow:</p>
+      <ol style="font-size:1.5em;">
+        <li>A Prompt Engineer, someone who is knowledgable about the subject domain and understands how to craft a prompt, creates
+          a parameterized prompt that will perform a certain function.</li>
+        <li>An end-user then browses a catalog of available prompts. That user selects a prompt and fills out the parameters.
+          The user then executes the prompt.</li>
+        <li>A Flow is executed that sends the prompt to OpenAI and waits for a response and prints it on the screen.</li>
+      </ol>
+
+      <h2 style="font-size:3em; margin-bottom: 1em;">Using OpenAI Services</h2>
+      <p style="font-size:1.5em;margin-bottom: 1em;">There are a few things you should know to set your expectations about using an OpenAI account.</p>
+      <ol style="font-size:1.5em;">
+        <li>OpenAI has many
+          <a href="https://openai.com/policies/usage-policies">usage policy restrictions</a>.</li>
+        <li>OpenAI is domiciled in the United States and subject to
+          <a href="https://openai.com/policies/terms-of-use">US laws and export restrictions</a>.</li>
+        <li>You can use the Free Tier of OpenAI API services, but I don't recommend it. You will be limited to the `gpt-3.5-turbo`
+          model and a limited number of API calls per month.</li>
+        <li>Once you sign up for a paid account, OpenAI will grant you unlimited usage of the `gpt-3.5-turbo` model, but you
+          will need to wait at least 30 days before you can gain access to the `gpt-4` model.</li>
+      </ol>
+      <p style="font-size:1.5em;margin-bottom: 1em;">I set all the sample prompts in the repo to use the `gpt-3.5-turbo` model. You can change the model to `gpt-4` if you
+        have access.</p>
+
+      <h3 style="font-size:2em;margin-bottom: 1em;">Cost Controls using OpenAI Services</h3>
+      <p style="font-size:1.5em;margin-bottom: 1em;">
+        Using the OpenAI API with GPT4 can lead to unexpected charges if you are not aware of your token usage. OpenAI has billing
+        control features that can put soft and hard stops to your usage once you breach a certain threshold of monthly cost.
+        Go to the following link to define your hard/soft limits for monthly spend once your API key is created
+        <a href="https://platform.openai.com/account/billing/limits">https://platform.openai.com/account/billing/limits</a>
       </p>
       <p style="font-size:1.5em;margin-bottom: 1em;">
-        `AI Gateway for Salesforce` is a bare-bones implementation of OpenAI API. It is intended to be a template for other organizations
-        to experiment with OpenAI API. The OpenAI user interface is written as a very simple Flow, so it should be easy for
-        admins and developers to customize the user interface to meet their needs.
+        GPT consumption is based on the number of tokens used with each request. A good rule of thumb is that every 4 characters
+        will consume one (1) token. OpenAI has an app that can you use to get an estimate on the number of tokens used
+        <a href="https://platform.openai.com/tokenizer">https://platform.openai.com/tokenizer</a>
       </p>
-      <h2 style="font-size:3em;margin-bottom: 1em;">Privacy Considerations</h2>
-      <p>&nbsp;</p>
-      <h3 style="font-size:2em;margin-bottom: 1em;">Personal Identifiable Information</h3>
+      <h2 style="font-size:2em; margin-bottom: 1em;">Privacy Considerations</h2>
+
       <p style="font-size:1.5em;margin-bottom: 1em;">
-        Please make sure that you do not store any personal identifiable information (PII) in the `Prompt__c` object. The `Prompt__c`
-        object is not encrypted, so any PII stored in this object will be visible to anyone with access to the object. The
-        `PromptAnswer__c` object is also not encrypted, so it is not safe to store PII in this object as well.
+        The enterprise environment brings along critical privacy concerns while using OpenAI API.
       </p>
-      <h3 style="font-size:2em;margin-bottom: 1em;">Cloud Service Provider</h3>
+
+      <h3 style="font-size:1.5em;margin-bottom: 1em;">Personal Identifiable Information</h3>
+
+      <p style="font-size:1.5em;margin-bottom: 1em;">
+        It's pivotal to steer clear of storing any personal identifiable information (PII) in the `Prompt__c` object. The `Prompt__c`
+        object isn't encrypted, leaving any data therein unsecured from everyone having access to the object. Similarly,
+        the `PromptAnswer__c` object also doesn't support encryption and hence can't guarantee the safety of PII.
+      </p>
+
+      <h3 style="font-size:1.5em;margin-bottom: 1em;">OpenAI Cloud Service Provider Considerations</h3>
+
       <p style="font-size:1.5em;margin-bottom: 1em;">
         You need to make your own decision whether to used OpenAI API because it requires sending data to the Open AI servers. However,
         if you believe OpenAI's promises, then it should be safe. Here are some of the promises presented in the latest update
-        to their privacy policy:
-        <a href="https://openai.com/policies/privacy-policy">https://openai.com/policies/privacy-policy</a>.
+        to their
+        <a href="https://openai.com/policies/api-data-usage-policies">API data usage policies</a> from June 14, 2023 and the
+        <a href="https://openai.com/api-data-privacy">OpenAI API data privacy</a> from July 21, 2023:
       </p>
+
       <ol style="font-size:1.5em;">
         <li>OpenAI will not use customer data submitted via the API to train or improve their models unless the customer explicitly
           opts in to share their data for this purpose.</li>
         <li>Data sent through the API will be retained for a maximum of 30 days for abuse and misuse monitoring purposes, after
           which it will be deleted (unless required by law).</li>
-        <li>Unlike ChatGPT-4, where saved conversations are used to improve the model, the API does not save conversations.</li>
+        <li>Unlike the consumer ChatGPT-Plus service, where saved conversations are used to improve the model, the API does not
+          save conversations.</li>
       </ol>
+
       <p style="font-size:1.5em;margin-bottom: 1em;">
         Here is some more information from OpenAI: "By default, OpenAI does not use customer data submitted via the API to train
         their models or improve their services. Data submitted for fine-tuning is only used to fine-tune the customer's model.
@@ -66,10 +145,11 @@
         Data submitted through the Files endpoint, such as for fine-tuning a model, is retained until the user deletes the
         file."
       </p>
+
       <p style="font-size:1.5em;margin-bottom: 1em;">
         Bottom line: according to these promises your data will not be saved and used for training. But, I would recommend that you
         read the OpenAI privacy policy and make your own decision about whether you want to use this project in your own
-        org. As of Summer, 2023 we are still waiting for the OpenAI Business account to be available. I believe OpenAI will
+        org. As of July 25, 2023 we are still waiting for the OpenAI Business account to be available. I believe OpenAI will
         be able to provide more assurances about data privacy once the Business account is available.
       </p>
       <h2 style="font-size:3em;margin-bottom: 1em;">Getting Started</h2>
@@ -124,13 +204,32 @@
         <li>Click on the users you want to add to the permission set.</li>
         <li>Click `Next`.</li>
       </ol>
+      <h2 style="font-size:2em; margin-bottom: 1em;">Unmanaged Package Post-Installation Notes</h2>
+      <p style="font-size:1.5em;margin-bottom: 1em;">Don't forget to assign designated users to the `PromptEngineering` permission set! You also need to upload the sample
+        prompts into the `Prompt__c` custom object. You can do this in one of two ways:
+      </p>
+
+      <h3 style="font-size:1.5em;margin-bottom: 1em;">Loading JSON Sample File</h3>
+      <p style="font-size:1.5em;margin-bottom: 1em;">You can also load the sample prompts found in this repository to your org. Copy the `Prompt__c.json` document in the
+        `./data` folder to your local machine. Then use the Salesforce CLI to load the data into your org. Use the following
+        command:
+      </p>
+      <pre>
+    sfdx data import tree -f Prompt__c.json --target-org &lt;your-org-alias&gt; 
+     </pre>
+
+      <h3 style="font-size:1.5em;margin-bottom: 1em;">Loading CSV Sample File</h3>
+      <p style="font-size:1.5em;margin-bottom: 1em;">If you don't have access to the SDFX or SF commands you can load the sample prompts using a CSV file. I used
+        <a href="https://dataimporter.io">dataimporter.io</a> to export the sample prompts. To ensure compatibility you should use also use dataimporter.io
+        to load the prompts into your org. You can find the data file in the `./data` folder.
+      </p>
       <p style="font-size:1.5em;margin-bottom: 1em;">Congratulations! You have completed the setup required to use the OpenAI API from within your Salesforce org, and your
         API key is safely stored in Salesforce. You are ready to start using the sample prompts.</p>
       <h2 style="font-size:3em; margin-bottom: 1em;">Using AI Gateway for Salesforce</h2>
       <p style="font-size:1.5em;margin-bottom: 1em;">
         Once you have everything set up you can begin sending prompts to OpenAI. Navigate to the Prompt Engineering app from the
-        main application menu. Click Prompts tab and click New to create a new prompt. Enter a name and title for the prompt
-        and then select the model you want to use.
+        main application menu. Click the Prompts tab and click New to create a new prompt. Enter a name and title for the
+        prompt and then select the model you want to use.
       </p>
       <p style="font-size:1.5em;margin-bottom: 1em;">
         You can adjust the temperature setting to control the randomness of the response. The higher the temperature, the more random
@@ -217,9 +316,18 @@
         </li>
       </ul>
       <h2 style="font-size:3em;margin-bottom: 1em;">Project Credits</h2>
-      <p style="font-size:1.5em;margin-bottom: 1em;">
+      <p style="font-size:1.5em">
         Project Lead:
         <a href="mailto:vern@salesforcedevops.net">Vernon Keenan</a>
+        <br/>
+        <br/> Project Contributors:
+        <ul>
+          <li>
+            <span style="font-size:1.5em">
+              <a href="https://www.linkedin.com/in/cpearson31/">Chris Pearson</a>
+            </span>
+          </li>
+        </ul>
         <br/>
       </p>
       <h2 style="font-size:3em;margin-bottom: 1em;">Project References</h2>
