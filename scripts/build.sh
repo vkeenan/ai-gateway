@@ -5,14 +5,14 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source $DIR/.env
 # Create a new scratch org 
 echo "Creating scratch org...stand by..."
-sfdx force:org:create -s -f $CONFIG_FILE -a $ORG_ALIAS --target-dev-hub $DEV_HUB_ALIAS
+sf org create scratch -f $CONFIG_FILE -a $ORG_ALIAS --target-dev-hub $DEV_HUB_ALIAS
 
 # Push metadata to the scratch org
-sfdx project deploy start --target-org $ORG_ALIAS
-sfdx force:user:permset:assign --perm-set-name PromptEngineering --target-org $ORG_ALIAS
+sf project deploy start --target-org $ORG_ALIAS
+sf org assign permset --name AI_Gateway --target-org $ORG_ALIAS
 # Import sample data
 sfdx data import tree \
     -f ./data/Prompt__c.json \
     --target-org $ORG_ALIAS
 # Open the scratch org
-sfdx org open --target-org $ORG_ALIAS 
+sf org open --url-only --target-org $ORG_ALIAS 

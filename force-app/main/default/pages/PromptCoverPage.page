@@ -21,8 +21,8 @@
           alt="Welcome image" height="400" width="400" />
       </p>
       <p style="font-size:1.5em;margin-bottom: 1em;">We are glad you are here!</p>
-      <p style="font-size:1.5em;margin-bottom: 1em;">The Prompt Engineering App enables you to interact with OpenAI API, create and store prompts, and receive AI-generated
-        responses. Check the statistics above to see the current system usage. Happy prompting!
+      <p style="font-size:1.5em;margin-bottom: 1em;">The AI Gateway App enables you to interact with OpenAI API, create and store prompts, and receive AI-generated responses.
+        Check the statistics above to see the current system usage. Happy prompting!
       </p>
       <hr />
       <p style="font-size:1.5em;margin-bottom: 1em;">
@@ -30,8 +30,8 @@
         <strong>AI Gateway for Salesforce</strong>, an intuitive Prompt Engineering Platform tailored especially for Salesforce teams.
         This platform empowers you to create, test, and launch AI prompts within a highly-secured shared repository. The
         content and responses of these prompts are encapsulated within Salesforce custom objects. With
-        <strong>AI Gateway for Salesforce</strong>, you can leverage parameterized zero-shot prompt engineering to transform your
-        mundane productivity tasks into high-impact efficiencies.
+        <strong>AI Gateway for Salesforce</strong>, you can leverage parameterized zero-shot prompts to transform your mundane productivity
+        tasks into high-impact efficiencies.
       </p>
 
       <p style="font-size:1.5em;margin-bottom: 1em;">
@@ -47,7 +47,8 @@
         API. This tool has been designed with a custom Salesforce object named
         <code>Prompt__c</code>, thereby allowing developers and users to store prompts that can be sent to OpenAI chat completions API using models
         like
-        <code>gpt-4</code> and
+        <code>gpt-4</code>,
+        <code>gpt-4-turbo-preview</code> and
         <code>gpt-3.5-turbo</code>. The responses stored securely in
         <code>PromptAnswer__c</code> object can later be retrieved.
       </p>
@@ -89,8 +90,8 @@
         <li>Once you sign up for a paid account, OpenAI will grant you unlimited usage of the `gpt-3.5-turbo` model, but you
           will need to wait at least 30 days before you can gain access to the `gpt-4` model.</li>
       </ol>
-      <p style="font-size:1.5em;margin-bottom: 1em;">I set all the sample prompts in the repo to use the `gpt-3.5-turbo` model. You can change the model to `gpt-4` if you
-        have access.</p>
+      <p style="font-size:1.5em;margin-bottom: 1em;">I set all the sample prompts in the repo to use the `gpr-4-turbro` model. You can change the model to `gpt-3.5` if
+        you don't have paid API access.</p>
 
       <h3 style="font-size:2em;margin-bottom: 1em;">Cost Controls using OpenAI Services</h3>
       <p style="font-size:1.5em;margin-bottom: 1em;">
@@ -174,8 +175,7 @@
         <li>Enter "named" in the Quick Find box and select Named Credentials.</li>
         <li>Click on the External Credentials tab.</li>
         <li>Click on the OpenAI item to edit its details.</li>
-        <li>In the `Principals` section, click on the down arrow in the `Actions` column next to `PromptEngineering` and select
-          Edit.
+        <li>In the `Principals` section, click on the down arrow in the `Actions` column next to `AI_Gateway` and select Edit.
         </li>
         <li>Click Add on Authentication Parameters.</li>
         <li>Under Parameter 1, enter "apiKey" for the Name.</li>
@@ -186,27 +186,27 @@
       </ol>
 
       <h3 style="font-size:2em;margin-bottom: 1em;">Set Up Permissions for External Credential Principal</h3>
-      <p style="font-size:1.5em;margin-bottom: 1em;">The External Credential Principal is used to authenticate the external credential. You need to modify the `Prompt Engineering`
+      <p style="font-size:1.5em;margin-bottom: 1em;">The External Credential Principal is used to authenticate the external credential. You need to modify the `AI Gateway`
         permission set to gain permission to use it.</p>
       <ol style="font-size:1.5em;">
         <li>In the Quick Find box, enter "permission" and select Permission Sets.</li>
-        <li>Click on the `Prompt Engineering` permission set.</li>
-        <li>Click on `External Credential Principal Access` on the right side of the screen.</li>
+        <li>Click on the `AI Gateway` permission set.</li>
+        <li>Click on `External Credential Principal Access` which is listed in the Permission Set Apps section.</li>
         <li>Click Edit.</li>
-        <li>Select the `OpenAI - PromptEngineering` item and click Add.</li>
+        <li>Select the `OpenAI - AI_Gateway` item and click Add.</li>
         <li>Click Save.</li>
       </ol>
-      <h3 style="font-size:2em;margin-bottom: 1em;">Add Users to Prompt Engineering Permission Set</h3>
+      <h3 style="font-size:2em;margin-bottom: 1em;">Add Users to AI Gateway Permission Set</h3>
       <ol style="font-size:1.5em;">
-        <li>Remain in the `Prompt Engineering` Permission Sets screen from the previous section.</li>
+        <li>Remain in the `AI Gateway` Permission Set screen from the previous section.</li>
         <li>Click on `Manage Assignments`.</li>
         <li>Click `Add Assignments`.</li>
         <li>Click on the users you want to add to the permission set.</li>
         <li>Click `Next`.</li>
       </ol>
       <h2 style="font-size:2em; margin-bottom: 1em;">Unmanaged Package Post-Installation Notes</h2>
-      <p style="font-size:1.5em;margin-bottom: 1em;">Don't forget to assign designated users to the `PromptEngineering` permission set! You also need to upload the sample
-        prompts into the `Prompt__c` custom object. You can do this in one of two ways:
+      <p style="font-size:1.5em;margin-bottom: 1em;">Don't forget to assign designated users to the `AI_Gateway` permission set! You also need to upload the sample prompts
+        into the `Prompt__c` custom object. You can do this in one of two ways:
       </p>
 
       <h3 style="font-size:1.5em;margin-bottom: 1em;">Loading JSON Sample File</h3>
@@ -227,9 +227,9 @@
         API key is safely stored in Salesforce. You are ready to start using the sample prompts.</p>
       <h2 style="font-size:3em; margin-bottom: 1em;">Using AI Gateway for Salesforce</h2>
       <p style="font-size:1.5em;margin-bottom: 1em;">
-        Once you have everything set up you can begin sending prompts to OpenAI. Navigate to the Prompt Engineering app from the
-        main application menu. Click the Prompts tab and click New to create a new prompt. Enter a name and title for the
-        prompt and then select the model you want to use.
+        Once you have everything set up you can begin sending prompts to OpenAI. Navigate to the AI Gateway app from the main application
+        menu. Click the Prompts tab and click New to create a new prompt. Enter a name and title for the prompt and then
+        select the model you want to use.
       </p>
       <p style="font-size:1.5em;margin-bottom: 1em;">
         You can adjust the temperature setting to control the randomness of the response. The higher the temperature, the more random

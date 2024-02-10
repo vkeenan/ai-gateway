@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <actionCalls>
         <name>OpenAI_Connect</name>
         <label>OpenAI Connect</label>
@@ -96,8 +97,8 @@
     <dynamicChoiceSets>
         <name>Model</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true"/>
-        <object xsi:nil="true"/>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
         <picklistField>Model__c</picklistField>
         <picklistObject>Prompt__c</picklistObject>
     </dynamicChoiceSets>
@@ -105,7 +106,8 @@
     <formulas>
         <name>AnswerName</name>
         <dataType>String</dataType>
-        <expression>&quot;Answer for &quot; &amp; {!PromptRecord.Name} &amp; &quot; &quot; &amp; text(now())</expression>
+        <expression>&quot;Answer for &quot; &amp; {!PromptRecord.Name} &amp; &quot; &quot; &amp;
+            text(now())</expression>
     </formulas>
     <formulas>
         <name>IncrementUsedCount</name>
@@ -113,7 +115,7 @@
         <expression>{!PromptRecord.UsedCount__c} + 1</expression>
         <scale>2</scale>
     </formulas>
-    <interviewLabel>Prompt Engineering {!$Flow.CurrentDateTime}</interviewLabel>
+    <interviewLabel>AI Gateway {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prompt Processing</label>
     <processMetadataValues>
         <name>BuilderType</name>
@@ -255,7 +257,12 @@
         <allowPause>false</allowPause>
         <fields>
             <name>Answer</name>
-            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 18px;&quot;&gt;ChatGPT Response&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Tokens Used: {!tokensUsed}&lt;/p&gt;&lt;p&gt;Model Used: {!aiModelUsed}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;u&gt;Answer Text&lt;/u&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;{!aiAnswer}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 18px;&quot;&gt;ChatGPT
+                Response&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Tokens Used:
+                {!tokensUsed}&lt;/p&gt;&lt;p&gt;Model Used:
+                {!aiModelUsed}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;u&gt;Answer
+                Text&lt;/u&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255,
+                255, 255); color: rgb(68, 68, 68);&quot;&gt;{!aiAnswer}&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
@@ -274,7 +281,10 @@
         </connector>
         <fields>
             <name>Title</name>
-            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 14px;&quot;&gt;Name: {!PromptRecord.Name}&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;Title: {!PromptRecord.Title__c}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 14px;&quot;&gt;Name:
+                {!PromptRecord.Name}&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;span
+                style=&quot;font-size: 14px;&quot;&gt;Title:
+                {!PromptRecord.Title__c}&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>

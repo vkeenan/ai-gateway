@@ -2,7 +2,7 @@
 
 ![GitHub release](https://img.shields.io/github/release/vkeenan/sf-prompts.svg)
 
-Unleash limitless possibilities with our `AI Gateway for Salesforce`, an intuitive Prompt Engineering Platform tailored especially for Salesforce teams. This platform empowers you to create, test, and launch AI prompts within a highly-secured shared repository. The content and responses of these prompts are encapsulated within Salesforce custom objects. With `AI Gateway for Salesforce`, you can leverage parameterized zero-shot prompt engineering to transform your mundane productivity tasks into high-impact efficiencies.
+Unleash limitless possibilities with our `AI Gateway for Salesforce`, an intuitive **Prompt Engineering Platform** (PEP) tailored especially for Salesforce teams. This platform empowers you to create, test, and launch AI prompts within a highly-secured shared repository. The content and responses of these prompts are encapsulated within Salesforce custom objects. With `AI Gateway for Salesforce`, you can leverage parameterized zero-shot prompt engineering to transform your mundane productivity tasks into high-impact efficiencies.
 
 For detailed insight on how `AI Gateway for Salesforce` works, please refer to our blog post: [Introducing AI Gateway for Salesforce: Managed Access for OpenAI API](https://salesforcedevops.net/index.php/2023/06/15/introducing-ai-gateway-for-salesforce/).
 
@@ -10,9 +10,9 @@ To install the project, visit Salesforce AppExchange: <https://login.salesforce.
 
 ## Project Description
 
-`AI Gateway for Salesforce` is a novel, open-source solution that enables Salesforce users to employ the OpenAI API. This tool has been designed with a custom Salesforce object named `Prompt__c`, thereby allowing developers and users to store prompts that can be sent to OpenAI chat completions API using models like `gpt-4` and `gpt-3.5-turbo`. The responses stored securely in `PromptAnswer__c` object can later be retrieved.
+`AI Gateway for Salesforce` is a novel, open-source solution that enables Salesforce users to employ the OpenAI API. This tool has been designed with a custom Salesforce object named `Prompt__c`, thereby allowing developers and users to store prompts that can be sent to OpenAI chat completions API using models like `gpt-4-turbo-preview` and `gpt-3.5-turbo`. The responses stored securely in `PromptAnswer__c` object can later be retrieved.
 
-This project presents a minimalist implementation of OpenAI API, serving as a template for organizations to try OpenAI API. The user interface is ingeniously crafted into a simple Flow that administrators and developers can easily modify to ensure customization as per the needs of your organization.
+This project presents a minimalist implementation of OpenAI API, serving as a template for organizations to try OpenAI API. The user interface is crafted into a simple Flow that administrators and developers can easily modify to ensure customization as per the needs of your organization.
 
 ![Robot with a Wrench and a Brush](images/SalesforceDevops.net_An_icon_that_is_robot_with_a_wrench.png)
 
@@ -100,7 +100,7 @@ Bottom line: according to these promises your data will not be saved and used fo
 
 ## Unmanaged Package Post-Installation Notes
 
-Don't forget to assign designated users to the `PromptEngineering` permission set! You also need to upload the sample prompts into the `Prompt__c` custom object. You can do this in one of two ways:
+Don't forget to assign designated users to the `AI_Gateway` permission set! You also need to upload the sample prompts into the `Prompt__c` custom object. You can do this in one of two ways:
 
 ### Loading JSON Sample File
 
@@ -151,7 +151,7 @@ These scratch org instructions assume you don't already have a `dev-hub` org set
 2. Enter "named" in the Quick Find box and select Named Credentials.
 3. Click on the External Credentials tab.
 4. Click on the OpenAI item to edit its details.
-5. In the `Principals` section, click on the down arrow in the `Actions` column next to `PromptEngineering` and select Edit.
+5. In the `Principals` section, click on the down arrow in the `Actions` column next to `AI_Gateway` and select Edit.
 6. Click Add on Authentication Parameters.
 7. Under Parameter 1, enter "apiKey" for the Name.
 8. Enter the OpenAI API key you generated in the previous section for the Value.
@@ -161,18 +161,18 @@ These scratch org instructions assume you don't already have a `dev-hub` org set
 
 #### Set Up Permissions for External Credential Principal
 
-The External Credential Principal is used to authenticate the external credential. You need to modify the `Prompt Engineering` permission set to gain permission to use it.
+The External Credential Principal is used to authenticate the external credential. You need to modify the `AI Gateway` permission set to gain permission to use it.
 
 1. In the Quick Find box, enter "permission" and select Permission Sets.
-2. Click on the `Prompt Engineering` permission set.
+2. Click on the `AI Gateway` permission set.
 3. Click on `External Credential Principal Access` on the right side of the screen.
 4. Click Edit.
-5. Select the `OpenAI - PromptEngineering` item and click Add.
+5. Select the `OpenAI - AI_Gateway` item and click Add.
 6. Click Save.
 
-#### Add Users to Prompt Engineering Permission Set
+#### Add Users to AI Gateway Permission Set
 
-1. Remain in the `Prompt Engineering` Permission Sets screen from the previous section.
+1. Remain in the `AI Gateway` Permission Sets screen from the previous section.
 2. Click on `Manage Assignments`.
 3. Click `Add Assignments`.
 4. Click on the users you want to add to the permission set.
@@ -182,7 +182,7 @@ Congratulations! You have completed the setup required to use the OpenAI API fro
 
 ## Using AI Gateway for Salesforce
 
-Once you have everything set up you can begin sending prompts to OpenAI. Navigate to the Prompt Engineering app from the main application menu. Click the Prompts tab and click New to create a new prompt. Enter a name and title for the prompt and then select the model you want to use.
+Once you have everything set up you can begin sending prompts to OpenAI. Navigate to the `AI Gateway` app from the main application menu. Click the `Prompts` tab and click `New` to create a new prompt. Enter a name and title for the prompt and then select the model you want to use.
 
 You can adjust the temperature setting to control the randomness of the response. The higher the temperature, the more random the response. The lower the temperature, the more predictable the response. The default temperature is 0.7, which is a good starting point.
 

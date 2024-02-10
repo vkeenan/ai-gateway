@@ -12,9 +12,9 @@
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
-    <label>Prompt Engineering</label>
+    <label>AI Gateway</label>
     <navType>Standard</navType>
-    <tabs>Prompt_Engineering</tabs>
+    <tabs>AI_Gateway</tabs>
     <tabs>Prompt__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Prompt_Engineering_UtilityBar</utilityBar>

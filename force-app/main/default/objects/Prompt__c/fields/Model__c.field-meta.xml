@@ -18,6 +18,11 @@
                 <label>gpt-3.5-turbo</label>
             </value>
             <value>
+                <fullName>gpt-3.5-turbo-0125</fullName>
+                <default>false</default>
+                <label>gpt-3.5-turbo-0125</label>
+            </value>
+            <value>
                 <fullName>gpt-3.5-turbo-16k</fullName>
                 <default>false</default>
                 <label>gpt-3.5-turbo-16k</label>
@@ -26,6 +31,11 @@
                 <fullName>gpt-4</fullName>
                 <default>false</default>
                 <label>gpt-4</label>
+            </value>
+            <value>
+                <fullName>gpt-4-turbo-preview</fullName>
+                <default>true</default>
+                <label>gpt-4-turbo-preview</label>
             </value>
         </valueSetDefinition>
     </valueSet>
