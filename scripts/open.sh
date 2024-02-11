@@ -5,4 +5,4 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source $DIR/.env
 
 # Open the scratch org
-sfdx org open --target-org $ORG_ALIAS
+sf org open --url-only --target-org $ORG_ALIAS 

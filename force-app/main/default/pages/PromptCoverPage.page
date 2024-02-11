@@ -27,9 +27,10 @@
       <hr />
       <p style="font-size:1.5em;margin-bottom: 1em;">
         Unleash limitless possibilities with our
-        <strong>AI Gateway for Salesforce</strong>, an intuitive Prompt Engineering Platform tailored especially for Salesforce teams.
-        This platform empowers you to create, test, and launch AI prompts within a highly-secured shared repository. The
-        content and responses of these prompts are encapsulated within Salesforce custom objects. With
+        <strong>AI Gateway for Salesforce</strong>, an intuitive
+        <strong>Prompt Engineering Platform (PEP)</strong> tailored especially for Salesforce teams. This platform empowers you to
+        create, test, and launch AI prompts within a highly-secured shared repository. The content and responses of these
+        prompts are encapsulated within Salesforce custom objects. With
         <strong>AI Gateway for Salesforce</strong>, you can leverage parameterized zero-shot prompts to transform your mundane productivity
         tasks into high-impact efficiencies.
       </p>

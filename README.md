@@ -2,7 +2,7 @@
 
 ![GitHub release](https://img.shields.io/github/release/vkeenan/sf-prompts.svg)
 
-Unleash limitless possibilities with our `AI Gateway for Salesforce`, an intuitive **Prompt Engineering Platform** (PEP) tailored especially for Salesforce teams. This platform empowers you to create, test, and launch AI prompts within a highly-secured shared repository. The content and responses of these prompts are encapsulated within Salesforce custom objects. With `AI Gateway for Salesforce`, you can leverage parameterized zero-shot prompt engineering to transform your mundane productivity tasks into high-impact efficiencies.
+Unleash limitless possibilities with our `AI Gateway for Salesforce`, an intuitive **Prompt Engineering Platform  (PEP)** tailored especially for Salesforce teams. This platform empowers you to create, test, and launch AI prompts within a highly-secured shared repository. The content and responses of these prompts are encapsulated within Salesforce custom objects. With `AI Gateway for Salesforce`, you can leverage parameterized zero-shot prompt engineering to transform your mundane productivity tasks into high-impact efficiencies.
 
 For detailed insight on how `AI Gateway for Salesforce` works, please refer to our blog post: [Introducing AI Gateway for Salesforce: Managed Access for OpenAI API](https://salesforcedevops.net/index.php/2023/06/15/introducing-ai-gateway-for-salesforce/).
 
@@ -36,7 +36,7 @@ This project presents a minimalist implementation of OpenAI API, serving as a te
     - [Salesforce Scratch Org Setup](#salesforce-scratch-org-setup)
       - [Add OpenAI Keys to External Credential](#add-openai-keys-to-external-credential)
       - [Set Up Permissions for External Credential Principal](#set-up-permissions-for-external-credential-principal)
-      - [Add Users to Prompt Engineering Permission Set](#add-users-to-prompt-engineering-permission-set)
+      - [Add Users to AI Gateway Permission Set](#add-users-to-ai-gateway-permission-set)
   - [Using AI Gateway for Salesforce](#using-ai-gateway-for-salesforce)
     - [Using JSON Parameters](#using-json-parameters)
     - [Executing a Prompt](#executing-a-prompt)
